@@ -1,0 +1,2089 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap');
+
+:root {
+  font-family: "DM Sans", sans-serif;
+  color: #17211d;
+  background: #ffffff;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background: #ffffff;
+}
+
+button,
+a {
+  font-family: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* =========================
+   NAVBAR
+========================= */
+
+.navbar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  color: white;
+}
+
+.nav-container {
+  width: min(1180px, 92%);
+  margin: auto;
+  height: 82px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-mark {
+  width: 43px;
+  height: 43px;
+  border: 2px solid #d7b56d;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 11px;
+  font-weight: 700;
+  color: #d7b56d;
+}
+
+.logo-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+}
+
+.logo-text strong {
+  font-size: 15px;
+  letter-spacing: 1px;
+}
+
+.logo-text span {
+  font-size: 9px;
+  letter-spacing: 3px;
+  color: #d7b56d;
+  margin-top: 4px;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+.nav-links a {
+  font-size: 14px;
+  color: rgba(255,255,255,.9);
+  transition: .3s;
+}
+
+.nav-links a:hover {
+  color: #d7b56d;
+}
+
+.nav-button,
+.primary-btn {
+  border: none;
+  background: #c99f54;
+  color: #fff;
+  padding: 13px 21px;
+  border-radius: 30px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+}
+
+.mobile-menu {
+  display: none;
+  border: none;
+  background: transparent;
+  color: white;
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero {
+  min-height: 720px;
+  position: relative;
+  background:
+    linear-gradient(
+      rgba(8, 25, 19, .72),
+      rgba(8, 25, 19, .82)
+    ),
+    url("https://images.unsplash.com/photo-1438032005730-c779502df39b?auto=format&fit=crop&w=1800&q=85")
+    center/cover;
+  display: flex;
+  align-items: center;
+  color: white;
+}
+
+.hero-content {
+  width: min(1180px, 92%);
+  margin: auto;
+  padding-top: 80px;
+  position: relative;
+  z-index: 2;
+}
+
+.hero-small-text,
+.section-heading span,
+.section-label,
+.program-content > span,
+.sermon-info > span,
+.cta-section span {
+  color: #d7b56d;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 3px;
+}
+
+.hero h1 {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(50px, 7vw, 88px);
+  line-height: .95;
+  margin: 18px 0;
+}
+
+.hero p {
+  max-width: 520px;
+  color: rgba(255,255,255,.8);
+  line-height: 1.8;
+  font-size: 17px;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 13px;
+  margin-top: 30px;
+}
+
+.secondary-btn {
+  padding: 13px 21px;
+  border-radius: 30px;
+  border: 1px solid rgba(255,255,255,.4);
+  background: transparent;
+  color: white;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.hero-scroll {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: rgba(255,255,255,.65);
+  font-size: 11px;
+  letter-spacing: 1px;
+}
+
+.hero-scroll div {
+  width: 1px;
+  height: 35px;
+  background: rgba(255,255,255,.5);
+  margin: 8px auto 0;
+}
+
+/* =========================
+   SECTIONS
+========================= */
+
+.service-section,
+.quick-section,
+.sermon-section {
+  padding: 90px 4%;
+}
+
+.section-heading {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto 45px;
+}
+
+.section-heading h2 {
+  font-family: "Playfair Display", serif;
+  font-size: 42px;
+  margin: 10px 0;
+}
+
+.section-heading p {
+  color: #66716c;
+  line-height: 1.7;
+}
+
+.service-grid {
+  width: min(950px, 100%);
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.service-card {
+  padding: 28px;
+  border: 1px solid #e7ebe8;
+  border-radius: 18px;
+  display: flex;
+  gap: 18px;
+}
+
+.service-icon,
+.quick-icon {
+  min-width: 52px;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: #edf4ef;
+  color: #126e51;
+}
+
+.service-card h3 {
+  margin-bottom: 6px;
+}
+
+.service-card p {
+  color: #7a847f;
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.service-card strong {
+  color: #126e51;
+}
+
+/* =========================
+   WELCOME
+========================= */
+
+.welcome-section {
+  background: #f4f7f4;
+  padding: 100px 4%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 70px;
+  align-items: center;
+}
+
+.welcome-image {
+  min-height: 500px;
+}
+
+.image-placeholder {
+  height: 100%;
+  min-height: 500px;
+  border-radius: 22px;
+  background:
+    linear-gradient(rgba(15, 63, 45, .2), rgba(15, 63, 45, .5)),
+    url("https://images.unsplash.com/photo-1519491050282-cf00c82424b4?auto=format&fit=crop&w=1000&q=80")
+    center/cover;
+  display: flex;
+  align-items: flex-end;
+  padding: 30px;
+  color: white;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.welcome-content {
+  max-width: 550px;
+}
+
+.welcome-content h2 {
+  font-family: "Playfair Display", serif;
+  font-size: 48px;
+  line-height: 1.1;
+  margin: 15px 0 25px;
+}
+
+.welcome-content h2 span {
+  color: #126e51;
+}
+
+.welcome-content p {
+  color: #69736e;
+  line-height: 1.8;
+  margin-bottom: 16px;
+}
+
+.text-btn {
+  border: none;
+  background: transparent;
+  color: #126e51;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+  padding: 8px 0;
+}
+
+/* =========================
+   QUICK CARDS
+========================= */
+
+.quick-grid {
+  width: min(1150px, 100%);
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
+
+.quick-card {
+  border: 1px solid #e7ebe8;
+  padding: 28px;
+  border-radius: 18px;
+  transition: .3s;
+}
+
+.quick-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(0,0,0,.06);
+}
+
+.quick-card h3 {
+  margin: 18px 0 10px;
+}
+
+.quick-card p {
+  color: #707b76;
+  line-height: 1.6;
+  font-size: 14px;
+  min-height: 68px;
+  margin-bottom: 20px;
+}
+
+.quick-card > svg {
+  color: #126e51;
+}
+
+/* =========================
+   PROGRAM
+========================= */
+
+.program-section {
+  padding: 100px 7%;
+  background:
+    linear-gradient(
+      100deg,
+      rgba(8, 50, 36, .94),
+      rgba(8, 50, 36, .75)
+    ),
+    url("https://images.unsplash.com/photo-1478146896981-b80fe463b330?auto=format&fit=crop&w=1600&q=80")
+    center/cover;
+  color: white;
+}
+
+.program-content {
+  max-width: 650px;
+}
+
+.program-content h2 {
+  font-family: "Playfair Display", serif;
+  font-size: 55px;
+  line-height: 1;
+  margin: 15px 0 20px;
+}
+
+.program-content h2 strong {
+  color: #d7b56d;
+}
+
+.program-content p {
+  color: rgba(255,255,255,.75);
+  line-height: 1.8;
+  max-width: 500px;
+}
+
+.program-info {
+  display: flex;
+  gap: 25px;
+  margin: 28px 0;
+}
+
+.program-info div {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  color: rgba(255,255,255,.85);
+  font-size: 14px;
+}
+
+/* =========================
+   SERMON
+========================= */
+
+.sermon-card {
+  width: min(1000px, 100%);
+  margin: auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border: 1px solid #e5eae7;
+  border-radius: 22px;
+  overflow: hidden;
+}
+
+.sermon-thumbnail {
+  min-height: 330px;
+  background:
+    linear-gradient(rgba(0,0,0,.3), rgba(0,0,0,.5)),
+    url("https://images.unsplash.com/photo-1504052434569-70ad5836ab65?auto=format&fit=crop&w=1000&q=80")
+    center/cover;
+  display: grid;
+  place-items: center;
+}
+
+.play-circle {
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  background: #c99f54;
+  color: white;
+  display: grid;
+  place-items: center;
+}
+
+.sermon-info {
+  padding: 45px;
+}
+
+.sermon-info h3 {
+  font-family: "Playfair Display", serif;
+  font-size: 35px;
+  margin: 12px 0;
+}
+
+.sermon-info p {
+  color: #707a75;
+  line-height: 1.7;
+  margin-bottom: 20px;
+}
+
+/* =========================
+   CTA
+========================= */
+
+.cta-section {
+  padding: 100px 7%;
+  text-align: center;
+  background: #edf4ef;
+}
+
+.cta-section h2 {
+  font-family: "Playfair Display", serif;
+  font-size: 48px;
+  margin: 15px 0;
+}
+
+.cta-section p {
+  color: #6c7771;
+  margin-bottom: 25px;
+}
+
+/* =========================
+   NAVBAR LOGO
+========================= */
+
+.logo-mark {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #d7b56d;
+}
+
+.logo-mark img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.logo-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.05;
+}
+
+.logo-text strong {
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: #ffffff;
+}
+
+.logo-text span {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 3px;
+  color: #d7b56d;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+.footer {
+  background: #071c14;
+  color: #ffffff;
+  margin-top: 0;
+}
+
+.footer-main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 70px 6% 55px;
+
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1.3fr;
+  gap: 50px;
+}
+
+/* Footer Brand */
+
+.footer-brand {
+  max-width: 330px;
+}
+
+.footer-logo-wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  text-decoration: none;
+  margin-bottom: 20px;
+}
+
+.footer-logo {
+  width: 58px;
+  height: 58px;
+
+  border-radius: 50%;
+  overflow: hidden;
+
+  background: #ffffff;
+  border: 2px solid #d7b56d;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+}
+
+.footer-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.footer-logo-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.05;
+}
+
+.footer-logo-text strong {
+  color: #ffffff;
+  font-size: 1.05rem;
+  letter-spacing: 1.5px;
+}
+
+.footer-logo-text span {
+  color: #d7b56d;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 3px;
+  margin-top: 5px;
+}
+
+.footer-brand > p {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.92rem;
+  line-height: 1.8;
+  margin-bottom: 22px;
+}
+
+/* Footer Columns */
+
+.footer-column {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.footer-column h4 {
+  color: #d7b56d;
+  font-size: 0.95rem;
+  margin: 0 0 20px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+.footer-column a {
+  color: rgba(255, 255, 255, 0.72);
+  text-decoration: none;
+  font-size: 0.9rem;
+  margin-bottom: 13px;
+  transition: 0.3s ease;
+}
+
+.footer-column a:hover {
+  color: #d7b56d;
+  transform: translateX(4px);
+}
+
+.footer-column p {
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 0.9rem;
+  line-height: 1.7;
+  margin: 0 0 10px;
+}
+
+/* Socials */
+
+.footer-socials {
+  display: flex;
+  gap: 10px;
+}
+
+.footer-socials a {
+  width: 36px;
+  height: 36px;
+
+  border: 1px solid rgba(215, 181, 109, 0.4);
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #d7b56d;
+  text-decoration: none;
+
+  font-size: 0.85rem;
+  font-weight: 700;
+
+  transition: 0.3s ease;
+}
+
+.footer-socials a:hover {
+  background: #d7b56d;
+  color: #071c14;
+  transform: translateY(-3px);
+}
+
+.footer-contact-link {
+  color: #d7b56d !important;
+  font-weight: 600;
+  margin-top: 8px;
+}
+
+/* Footer Bottom */
+
+.footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+
+  max-width: 1200px;
+  margin: 0 auto;
+
+  padding: 22px 6%;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.footer-bottom p {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.78rem;
+  margin: 0;
+}
+
+
+/* =========================
+   MOBILE FOOTER
+========================= */
+
+@media (max-width: 800px) {
+
+  .footer-main {
+    grid-template-columns: 1fr 1fr;
+    gap: 40px 25px;
+    padding: 55px 6% 40px;
+  }
+
+  .footer-brand {
+    grid-column: 1 / -1;
+    max-width: 100%;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    text-align: center;
+    padding: 20px 6%;
+  }
+
+}
+
+
+@media (max-width: 500px) {
+
+  .footer-main {
+    grid-template-columns: 1fr;
+    gap: 35px;
+    padding: 45px 7% 35px;
+  }
+
+  .footer-brand {
+    grid-column: auto;
+  }
+
+  .footer-logo {
+    width: 52px;
+    height: 52px;
+  }
+
+  .footer-logo-text strong {
+    font-size: 0.95rem;
+  }
+
+  .footer-logo-text span {
+    font-size: 0.6rem;
+  }
+
+  .footer-column h4 {
+    margin-bottom: 15px;
+  }
+
+  .footer-bottom {
+    padding: 18px 7%;
+  }
+
+  .footer-bottom p {
+    font-size: 0.72rem;
+    line-height: 1.6;
+  }
+
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 800px) {
+
+  .nav-container {
+    height: 70px;
+  }
+
+  .mobile-menu {
+    display: block;
+  }
+
+  .nav-links {
+    position: absolute;
+    top: 70px;
+    left: 4%;
+    right: 4%;
+    background: #071c14;
+    padding: 25px;
+    border-radius: 15px;
+    display: none;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 18px;
+    box-shadow: 0 20px 50px rgba(0,0,0,.3);
+  }
+
+  .nav-links.open {
+    display: flex;
+  }
+
+  .nav-links a {
+    padding: 8px 0;
+  }
+
+  .nav-button {
+    justify-content: center;
+  }
+
+  .hero {
+    min-height: 680px;
+  }
+
+  .hero-content {
+    padding-top: 70px;
+  }
+
+  .hero h1 {
+    font-size: 51px;
+  }
+
+  .hero p {
+    font-size: 15px;
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .primary-btn,
+  .secondary-btn {
+    justify-content: center;
+  }
+
+  .service-grid,
+  .welcome-section,
+  .sermon-card {
+    grid-template-columns: 1fr;
+  }
+
+  .service-section,
+  .quick-section,
+  .sermon-section {
+    padding: 70px 5%;
+  }
+
+  .section-heading h2 {
+    font-size: 36px;
+  }
+
+  .welcome-section {
+    padding: 70px 5%;
+    gap: 40px;
+  }
+
+  .welcome-image,
+  .image-placeholder {
+    min-height: 360px;
+  }
+
+  .welcome-content h2 {
+    font-size: 39px;
+  }
+
+  .quick-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .program-section {
+    padding: 75px 6%;
+  }
+
+  .program-content h2 {
+    font-size: 43px;
+  }
+
+  .program-info {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .sermon-thumbnail {
+    min-height: 250px;
+  }
+
+  .sermon-info {
+    padding: 30px;
+  }
+
+  .footer-main {
+    grid-template-columns: 1fr 1fr;
+    gap: 35px;
+  }
+
+  .footer-brand {
+    grid-column: 1 / -1;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    gap: 8px;
+  }
+}
+
+@media (max-width: 500px) {
+
+  .hero h1 {
+    font-size: 44px;
+  }
+
+  .hero-small-text {
+    font-size: 10px;
+  }
+
+  .quick-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .program-content h2 {
+    font-size: 39px;
+  }
+
+  .cta-section {
+    padding: 75px 5%;
+  }
+
+  .cta-section h2 {
+    font-size: 37px;
+  }
+
+  .footer-main {
+    grid-template-columns: 1fr;
+  }
+}
+
+.logo-mark {
+  width: 44px;
+  height: 44px;
+}
+
+.logo-text strong {
+  font-size: 0.9rem;
+}
+
+.logo-text span {
+  font-size: 0.58rem;
+  letter-spacing: 2px;
+}
+
+/* =========================================
+   INNER PAGES
+========================================= */
+
+.page-hero {
+  position: relative;
+  min-height: 430px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 120px 20px 70px;
+  background:
+    linear-gradient(rgba(5, 20, 14, 0.82), rgba(5, 20, 14, 0.88)),
+    url("https://images.unsplash.com/photo-1438032005730-c779502df39b?auto=format&fit=crop&w=1800&q=80")
+    center/cover;
+  color: white;
+}
+
+.page-hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+}
+
+.page-hero-content span {
+  display: inline-block;
+  color: #d7b56d;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  margin-bottom: 18px;
+}
+
+.page-hero-content h1 {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(42px, 8vw, 76px);
+  line-height: 1.05;
+  margin: 0 0 22px;
+}
+
+.page-hero-content p {
+  max-width: 650px;
+  margin: auto;
+  color: rgba(255,255,255,.78);
+  font-size: 17px;
+  line-height: 1.8;
+}
+
+/* =========================================
+   CONTENT
+========================================= */
+
+.content-section,
+.ministries-section,
+.events-section,
+.sermons-section,
+.gallery-section,
+.leadership-section,
+.give-section,
+.prayer-section,
+.contact-section {
+  padding: 90px 7%;
+}
+
+.content-grid {
+  max-width: 1200px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 80px;
+}
+
+.content-grid h2,
+.give-intro h2,
+.prayer-intro h2,
+.contact-info h2 {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(38px, 5vw, 58px);
+  line-height: 1.1;
+  margin: 15px 0;
+}
+
+.content-grid h2 span,
+.give-intro h2 span,
+.prayer-intro h2 span,
+.contact-info h2 span {
+  color: #126e51;
+}
+
+.content-grid p,
+.give-intro p,
+.prayer-intro p,
+.contact-info > p {
+  color: #66736d;
+  line-height: 1.9;
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+/* =========================================
+   VALUES
+========================================= */
+
+.values-section {
+  padding: 90px 7%;
+  background: #f5f7f4;
+}
+
+.values-grid {
+  max-width: 1200px;
+  margin: 50px auto 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.value-card {
+  background: white;
+  padding: 35px 28px;
+  border-radius: 12px;
+  border: 1px solid #e7ebe8;
+}
+
+.value-number {
+  color: #c99f54;
+  font-weight: 700;
+  margin-bottom: 35px;
+}
+
+.value-card h3 {
+  font-family: "Playfair Display", serif;
+  font-size: 25px;
+}
+
+.value-card p {
+  color: #68746e;
+  line-height: 1.7;
+}
+
+/* =========================================
+   SCRIPTURE
+========================================= */
+
+.scripture-section {
+  min-height: 400px;
+  padding: 80px 7%;
+  background:
+    linear-gradient(rgba(7,28,20,.91), rgba(7,28,20,.91)),
+    url("https://images.unsplash.com/photo-1504052434569-70ad5836ab65?auto=format&fit=crop&w=1600&q=80")
+    center/cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: white;
+}
+
+.scripture-section span {
+  color: #d7b56d;
+  letter-spacing: 3px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.scripture-section h2 {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(35px, 6vw, 65px);
+  margin: 20px 0;
+}
+
+.scripture-section p {
+  color: rgba(255,255,255,.7);
+}
+
+/* =========================================
+   MINISTRIES
+========================================= */
+
+.ministries-section {
+  background: #fff;
+}
+
+.section-heading {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto 50px;
+}
+
+.section-heading > span {
+  color: #126e51;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 3px;
+}
+
+.section-heading h2 {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(38px, 5vw, 55px);
+  margin: 15px 0;
+}
+
+.section-heading p {
+  color: #6d7872;
+  line-height: 1.8;
+}
+
+.ministries-grid {
+  max-width: 1200px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.ministry-card {
+  padding: 38px;
+  background: #f5f7f4;
+  border-radius: 12px;
+  transition: .3s ease;
+}
+
+.ministry-card:hover {
+  transform: translateY(-5px);
+}
+
+.ministry-number {
+  color: #c99f54;
+  font-weight: 700;
+}
+
+.ministry-card h3 {
+  font-family: "Playfair Display", serif;
+  font-size: 27px;
+}
+
+.ministry-card p {
+  color: #68746e;
+  line-height: 1.7;
+  min-height: 75px;
+}
+
+/* =========================================
+   EVENTS
+========================================= */
+
+.events-list {
+  max-width: 950px;
+  margin: auto;
+}
+
+.event-card {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: 35px;
+  padding: 35px 0;
+  border-bottom: 1px solid #e2e7e3;
+}
+
+.event-date {
+  background: #126e51;
+  color: white;
+  min-height: 130px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.event-date span {
+  font-size: 12px;
+  letter-spacing: 2px;
+}
+
+.event-date strong {
+  font-family: "Playfair Display", serif;
+  font-size: 35px;
+}
+
+.event-content > span {
+  color: #c99f54;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.event-content h3 {
+  font-family: "Playfair Display", serif;
+  font-size: 30px;
+  margin: 10px 0;
+}
+
+.event-content p {
+  color: #68746e;
+  line-height: 1.7;
+}
+
+/* =========================================
+   SERMONS
+========================================= */
+
+.sermons-section {
+  background: #f5f7f4;
+}
+
+.sermons-grid {
+  max-width: 1200px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+}
+
+.sermon-page-card {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.sermon-page-thumbnail {
+  height: 230px;
+  background:
+    linear-gradient(rgba(7,28,20,.45), rgba(7,28,20,.45)),
+    url("https://images.unsplash.com/photo-1507692049790-de58290a4334?auto=format&fit=crop&w=900&q=80")
+    center/cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sermon-page-content {
+  padding: 28px;
+}
+
+.sermon-page-content > span {
+  color: #126e51;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.sermon-page-content h3 {
+  font-family: "Playfair Display", serif;
+  font-size: 25px;
+}
+
+.sermon-page-content p {
+  color: #68746e;
+  margin-bottom: 25px;
+}
+
+/* =========================================
+   GALLERY
+========================================= */
+
+.gallery-grid {
+  max-width: 1200px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+}
+
+.gallery-item {
+  height: 300px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .4s ease;
+}
+
+.gallery-item:hover img {
+  transform: scale(1.06);
+}
+
+.gallery-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 25px 20px;
+  color: white;
+  font-weight: 700;
+  background: linear-gradient(transparent, rgba(0,0,0,.75));
+}
+
+/* =========================================
+   LEADERSHIP
+========================================= */
+
+.leaders-grid {
+  max-width: 1100px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+}
+
+.leader-card {
+  background: #f5f7f4;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.leader-card img {
+  width: 100%;
+  height: 330px;
+  object-fit: cover;
+}
+
+.leader-info {
+  padding: 25px;
+}
+
+.leader-info span {
+  color: #126e51;
+  font-size: 11px;
+  letter-spacing: 2px;
+  font-weight: 700;
+}
+
+.leader-info h3 {
+  font-family: "Playfair Display", serif;
+  font-size: 26px;
+}
+
+.leader-info p {
+  color: #68746e;
+}
+
+/* =========================================
+   GIVING
+========================================= */
+
+.give-section {
+  max-width: 1200px;
+  margin: auto;
+}
+
+.give-intro {
+  max-width: 700px;
+  margin: 0 auto 60px;
+  text-align: center;
+}
+
+.giving-options {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.giving-card {
+  padding: 35px;
+  border: 1px solid #e1e6e2;
+  border-radius: 12px;
+}
+
+.giving-card > span {
+  color: #c99f54;
+  font-weight: 700;
+}
+
+.giving-card h3 {
+  font-family: "Playfair Display", serif;
+  font-size: 28px;
+}
+
+.giving-card p {
+  color: #68746e;
+  line-height: 1.7;
+  min-height: 75px;
+}
+
+/* =========================================
+   FORMS
+========================================= */
+
+.prayer-section,
+.contact-section {
+  max-width: 1200px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: .9fr 1.1fr;
+  gap: 80px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  border: 1px solid #dce2de;
+  border-radius: 7px;
+  padding: 15px;
+  font-family: inherit;
+  font-size: 15px;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: #126e51;
+}
+
+.form-group textarea {
+  resize: vertical;
+}
+
+.checkbox-label {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  margin-bottom: 25px;
+  color: #68746e;
+  font-size: 14px;
+}
+
+/* =========================================
+   CONTACT
+========================================= */
+
+.contact-item {
+  display: flex;
+  gap: 18px;
+  margin-top: 30px;
+}
+
+.contact-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #e8f1ed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.contact-item strong {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.contact-item p {
+  color: #68746e;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.contact-form {
+  padding: 40px;
+  background: #f5f7f4;
+  border-radius: 12px;
+}
+
+.contact-form h3 {
+  font-family: "Playfair Display", serif;
+  font-size: 30px;
+  margin-top: 0;
+}
+
+.map-section {
+  min-height: 400px;
+  padding: 70px 7%;
+  background:
+    linear-gradient(rgba(7,28,20,.87), rgba(7,28,20,.87)),
+    url("https://images.unsplash.com/photo-1507692049790-de58290a4334?auto=format&fit=crop&w=1800&q=80")
+    center/cover;
+  color: white;
+  display: flex;
+  align-items: center;
+}
+
+.map-section span {
+  color: #d7b56d;
+  font-size: 12px;
+  letter-spacing: 3px;
+  font-weight: 700;
+}
+
+.map-section h2 {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(40px, 6vw, 65px);
+  line-height: 1.05;
+}
+
+.map-section p {
+  color: rgba(255,255,255,.7);
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 800px) {
+
+  .page-hero {
+    min-height: 390px;
+    padding: 110px 20px 60px;
+  }
+
+  .content-grid,
+  .prayer-section,
+  .contact-section {
+    grid-template-columns: 1fr;
+    gap: 45px;
+  }
+
+  .values-grid,
+  .ministries-grid,
+  .sermons-grid,
+  .leaders-grid,
+  .giving-options {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .gallery-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .event-card {
+    grid-template-columns: 95px 1fr;
+    gap: 20px;
+  }
+
+  .event-date {
+    min-height: 100px;
+  }
+
+  .contact-form {
+    padding: 25px;
+  }
+}
+
+@media (max-width: 550px) {
+
+  .content-section,
+  .ministries-section,
+  .events-section,
+  .sermons-section,
+  .gallery-section,
+  .leadership-section,
+  .give-section,
+  .prayer-section,
+  .contact-section {
+    padding: 65px 20px;
+  }
+
+  .values-grid,
+  .ministries-grid,
+  .sermons-grid,
+  .leaders-grid,
+  .giving-options,
+  .gallery-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .gallery-item {
+    height: 280px;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .event-card {
+    grid-template-columns: 80px 1fr;
+  }
+
+  .event-content h3 {
+    font-size: 23px;
+  }
+
+  .page-hero-content h1 {
+    font-size: 42px;
+  }
+
+  .page-hero-content p {
+    font-size: 15px;
+  }
+
+  .primary-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* =========================
+   MOBILE BOTTOM NAVIGATION
+========================= */
+
+.mobile-bottom-nav {
+  display: none;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 800px) {
+
+  .mobile-bottom-nav {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    height: 68px;
+
+    background: rgba(7, 28, 20, 0.97);
+
+    border-top: 1px solid rgba(215, 181, 109, 0.2);
+
+    display: flex;
+    align-items: stretch;
+    justify-content: space-around;
+
+    z-index: 9999;
+
+    padding: 6px 5px;
+
+    backdrop-filter: blur(12px);
+  }
+
+  .mobile-nav-item {
+    flex: 1;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    gap: 3px;
+
+    color: rgba(255, 255, 255, 0.55);
+
+    text-decoration: none;
+
+    font-size: 0.65rem;
+
+    transition: 0.25s ease;
+
+    border-radius: 10px;
+  }
+
+  .mobile-nav-icon {
+    font-size: 1.25rem;
+
+    line-height: 1;
+
+    transition: 0.25s ease;
+  }
+
+  .mobile-nav-label {
+    font-size: 0.62rem;
+    font-weight: 500;
+  }
+
+  .mobile-nav-item.active {
+    color: #d7b56d;
+  }
+
+  .mobile-nav-item.active .mobile-nav-icon {
+    transform: translateY(-2px);
+  }
+
+  .mobile-nav-item:active {
+    transform: scale(0.94);
+  }
+
+
+  /* Give button emphasis */
+
+  .mobile-nav-item:last-child {
+    color: #d7b56d;
+  }
+
+  .mobile-nav-item:last-child .mobile-nav-icon {
+    font-size: 1.15rem;
+  }
+
+
+  /* Prevent content from being hidden */
+
+  body {
+    padding-bottom: 68px;
+  }
+
+}
+
+/* =========================================
+   HYMNS PAGE
+========================================= */
+
+.hymns-section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 80px 6% 100px;
+}
+
+/* Search */
+
+.hymn-search {
+  max-width: 650px;
+  margin: 0 auto 45px;
+}
+
+.hymn-search input {
+  width: 100%;
+  padding: 17px 20px;
+
+  border: 1px solid #d9dedb;
+  border-radius: 12px;
+
+  background: #ffffff;
+  color: #071c14;
+
+  font-family: inherit;
+  font-size: 0.95rem;
+
+  outline: none;
+
+  transition: 0.3s ease;
+  box-sizing: border-box;
+}
+
+.hymn-search input::placeholder {
+  color: #8b938f;
+}
+
+.hymn-search input:focus {
+  border-color: #126e51;
+  box-shadow: 0 0 0 3px rgba(18, 110, 81, 0.08);
+}
+
+
+/* Hymns Grid */
+
+.hymns-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+}
+
+
+/* Hymn Card */
+
+.hymn-card {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+
+  padding: 22px;
+
+  background: #ffffff;
+
+  border: 1px solid #e6ebe8;
+  border-radius: 16px;
+
+  text-decoration: none;
+  color: #071c14;
+
+  box-shadow: 0 8px 25px rgba(7, 28, 20, 0.04);
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.hymn-card:hover {
+  transform: translateY(-4px);
+
+  border-color: rgba(18, 110, 81, 0.3);
+
+  box-shadow: 0 15px 35px rgba(7, 28, 20, 0.09);
+}
+
+
+/* Hymn Number */
+
+.hymn-number {
+  width: 55px;
+  height: 55px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 12px;
+
+  background: #126e51;
+  color: #ffffff;
+
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+
+/* Hymn Information */
+
+.hymn-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.hymn-info span {
+  display: block;
+
+  color: #c99f54;
+
+  font-size: 0.68rem;
+  font-weight: 700;
+
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+
+  margin-bottom: 6px;
+}
+
+.hymn-info h3 {
+  margin: 0;
+
+  color: #071c14;
+
+  font-family: "Playfair Display", serif;
+
+  font-size: 1.15rem;
+  line-height: 1.4;
+}
+
+
+/* Arrow */
+
+.hymn-arrow {
+  width: 38px;
+  height: 38px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: #f1f6f3;
+  color: #126e51;
+
+  font-size: 1.1rem;
+
+  transition: 0.25s ease;
+}
+
+.hymn-card:hover .hymn-arrow {
+  background: #126e51;
+  color: #ffffff;
+}
+
+
+/* No Results */
+
+.no-hymns {
+  grid-column: 1 / -1;
+
+  text-align: center;
+
+  padding: 60px 20px;
+
+  border: 1px dashed #cdd5d1;
+  border-radius: 16px;
+}
+
+.no-hymns h3 {
+  margin: 0 0 8px;
+
+  color: #071c14;
+
+  font-size: 1.2rem;
+}
+
+.no-hymns p {
+  margin: 0;
+
+  color: #7b8580;
+
+  font-size: 0.9rem;
+}
+
+
+/* =========================================
+   HYMNS MOBILE
+========================================= */
+
+@media (max-width: 800px) {
+
+  .hymns-section {
+    padding: 60px 6% 90px;
+  }
+
+  .hymns-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .hymn-card {
+    padding: 17px;
+    gap: 14px;
+    border-radius: 14px;
+  }
+
+  .hymn-number {
+    width: 48px;
+    height: 48px;
+
+    border-radius: 10px;
+
+    font-size: 0.9rem;
+  }
+
+  .hymn-info h3 {
+    font-size: 1rem;
+  }
+
+  .hymn-info span {
+    font-size: 0.62rem;
+  }
+
+  .hymn-arrow {
+    width: 34px;
+    height: 34px;
+    font-size: 0.95rem;
+  }
+
+  .hymn-search {
+    margin-bottom: 30px;
+  }
+
+  .hymn-search input {
+    padding: 15px 16px;
+  }
+
+}
+
+
+@media (max-width: 500px) {
+
+  .hymns-section {
+    padding: 50px 5% 85px;
+  }
+
+  .hymn-card {
+    padding: 15px;
+  }
+
+  .hymn-number {
+    width: 44px;
+    height: 44px;
+  }
+
+  .hymn-info h3 {
+    font-size: 0.94rem;
+  }
+
+  .hymn-arrow {
+    width: 30px;
+    height: 30px;
+  }
+
+}
