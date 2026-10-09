@@ -4,7 +4,7 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import PageHero from "../components/PageHero";
 
-const API_URL = "http://localhost:5001/api";
+const API_URL = "https://cac-lifegate-backend.onrender.com/api";
 
 function Sermons() {
   const [sermons, setSermons] = useState([]);

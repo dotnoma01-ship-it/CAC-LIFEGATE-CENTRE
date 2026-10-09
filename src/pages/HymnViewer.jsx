@@ -17,7 +17,7 @@ function HymnViewer() {
         setError("");
 
         const response = await fetch(
-          `http://localhost:5001/api/hymns/${number}`
+          `https://cac-lifegate-backend.onrender.com/api/hymns/${number}`
         );
 
         if (!response.ok) {

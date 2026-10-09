@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
-const API_URL = "http://localhost:5001/api";
+const API_URL = "https://cac-lifegate-backend.onrender.com/api";
 
 function Hymns() {
   const [hymns, setHymns] = useState([]);
