@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 function Navbar({ variant = "" }) {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -8,15 +8,17 @@ function Navbar({ variant = "" }) {
     setMenuOpen(false);
   };
 
+  const getLinkClass = ({ isActive }) =>
+    isActive ? "active" : "";
+
   return (
     <header className={`navbar ${variant}`}>
       <div className="nav-container">
-
         {/* LOGO */}
         <Link to="/" className="logo" onClick={closeMenu}>
           <div className="logo-mark">
             <img
-              src="/CAC LOGO.jpg"
+              src="/CAC%20LOGO.jpg"
               alt="CAC Lifegate Centre logo"
             />
           </div>
@@ -27,70 +29,100 @@ function Navbar({ variant = "" }) {
           </div>
         </Link>
 
-        {/* NAVIGATION */}
-        <nav className={`nav-links ${menuOpen ? "open" : ""}`}>
-
-          <Link to="/" onClick={closeMenu}>
+        {/* DESKTOP AND MOBILE NAVIGATION */}
+        <nav
+          className={`nav-links ${menuOpen ? "open" : ""}`}
+          aria-label="Main navigation"
+        >
+          <NavLink to="/" end className={getLinkClass} onClick={closeMenu}>
             Home
-          </Link>
+          </NavLink>
 
-          <Link to="/about" onClick={closeMenu}>
+          <NavLink to="/about" className={getLinkClass} onClick={closeMenu}>
             About
-          </Link>
+          </NavLink>
 
-          <Link to="/ministries" onClick={closeMenu}>
+          <NavLink
+            to="/ministries"
+            className={getLinkClass}
+            onClick={closeMenu}
+          >
             Ministries
-          </Link>
+          </NavLink>
 
-          <Link to="/programs" onClick={closeMenu}>
+          <NavLink
+            to="/programs"
+            className={getLinkClass}
+            onClick={closeMenu}
+          >
             Programs
-          </Link>
+          </NavLink>
 
-          <Link to="/sermons" onClick={closeMenu}>
+          <NavLink
+            to="/sermons"
+            className={getLinkClass}
+            onClick={closeMenu}
+          >
             Sermons
-          </Link>
+          </NavLink>
 
-          <Link to="/hymns" onClick={closeMenu}>
+          <NavLink
+            to="/hymns"
+            className={getLinkClass}
+            onClick={closeMenu}
+          >
             Hymns
-          </Link>
+          </NavLink>
 
-<Link to="/gallery" onClick={closeMenu}>
-  Gallery
-</Link>
+          <NavLink
+            to="/gallery"
+            className={getLinkClass}
+            onClick={closeMenu}
+          >
+            Gallery
+          </NavLink>
 
-<Link to="/leadership" onClick={closeMenu}>
-  Leadership
-</Link>
+          <NavLink
+            to="/leadership"
+            className={getLinkClass}
+            onClick={closeMenu}
+          >
+            Leadership
+          </NavLink>
 
-<Link to="/contact" onClick={closeMenu}>
-  Contact
-</Link>
+          <NavLink
+            to="/contact"
+            className={getLinkClass}
+            onClick={closeMenu}
+          >
+            Contact
+          </NavLink>
 
-          <Link
+          <NavLink
             to="/give"
-            className="nav-button"
+            className={({ isActive }) =>
+              `nav-button ${isActive ? "active" : ""}`
+            }
             onClick={closeMenu}
           >
             Give
-          </Link>
-
+          </NavLink>
         </nav>
 
-        {/* MOBILE MENU */}
+        {/* MOBILE MENU BUTTON */}
         <button
           type="button"
           className="mobile-menu"
-          onClick={() => setMenuOpen(!menuOpen)}
-          aria-label="Toggle navigation"
+          onClick={() => setMenuOpen((previous) => !previous)}
+          aria-label={menuOpen ? "Close navigation menu" : "Open navigation menu"}
           aria-expanded={menuOpen}
+          aria-controls="main-navigation"
         >
           {menuOpen ? "✕" : "☰"}
         </button>
-
       </div>
     </header>
   );
 }
 
 export default Navbar;
-
