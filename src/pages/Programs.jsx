@@ -1,38 +1,71 @@
+import { useEffect, useState } from "react";
+
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import PageHero from "../components/PageHero";
 
-const events = [
-  {
-    month: "COMING",
-    day: "SOON",
-    title: "Awakening God's People",
-    category: "Special Program",
-    description:
-      "A powerful gathering of worship, prayer, teaching and fellowship."
-  },
-  {
-    month: "SUN",
-    day: "01",
-    title: "Sunday Worship Service",
-    category: "Weekly Service",
-    description:
-      "Join us for worship, the Word and fellowship."
-  },
-  {
-    month: "WED",
-    day: "05",
-    title: "Midweek Service",
-    category: "Weekly Service",
-    description:
-      "A time of prayer, teaching and spiritual growth."
-  }
-];
+const API_URL = "http://localhost:5001/api";
 
 function Programs() {
+  const [events, setEvents] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    fetchEvents();
+  }, []);
+
+  const fetchEvents = async () => {
+    try {
+      setLoading(true);
+      setError("");
+
+      const response = await fetch(`${API_URL}/events`);
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(
+          data.message || "Failed to load events."
+        );
+      }
+
+      setEvents(data);
+    } catch (err) {
+      console.error("Failed to fetch events:", err);
+
+      setError(
+        "Unable to load events right now. Please try again later."
+      );
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const formatMonth = (date) => {
+    if (!date) {
+      return "";
+    }
+
+    return new Date(date)
+      .toLocaleDateString("en-US", {
+        month: "short",
+      })
+      .toUpperCase();
+  };
+
+  const formatDay = (date) => {
+    if (!date) {
+      return "";
+    }
+
+    return new Date(date).toLocaleDateString("en-US", {
+      day: "2-digit",
+    });
+  };
+
   return (
     <div className="inner-page">
-
       <Navbar />
 
       <PageHero
@@ -42,45 +75,92 @@ function Programs() {
       />
 
       <section className="events-section">
-
         <div className="section-heading">
           <span>UPCOMING</span>
           <h2>Events & Programs</h2>
         </div>
 
-        <div className="events-list">
+        {loading && (
+          <div className="events-status">
+            <p>Loading events...</p>
+          </div>
+        )}
 
-          {events.map((event) => (
-            <article className="event-card" key={event.title}>
+        {!loading && error && (
+          <div className="events-status events-error">
+            <p>{error}</p>
 
-              <div className="event-date">
-                <span>{event.month}</span>
-                <strong>{event.day}</strong>
-              </div>
+            <button
+              className="text-btn"
+              onClick={fetchEvents}
+            >
+              Try Again →
+            </button>
+          </div>
+        )}
 
-              <div className="event-content">
+        {!loading && !error && events.length === 0 && (
+          <div className="events-status">
+            <p>
+              There are no upcoming events at the moment.
+            </p>
+          </div>
+        )}
 
-                <span>{event.category}</span>
+        {!loading && !error && events.length > 0 && (
+          <div className="events-list">
+            {events.map((event) => (
+              <article
+                className="event-card"
+                key={event._id}
+              >
+                <div className="event-date">
+                  <span>
+                    {formatMonth(event.date)}
+                  </span>
 
-                <h3>{event.title}</h3>
+                  <strong>
+                    {formatDay(event.date)}
+                  </strong>
+                </div>
 
-                <p>{event.description}</p>
+                <div className="event-content">
+                  <span>
+                    {event.category || "Church Event"}
+                  </span>
 
-                <button className="text-btn">
-                  View Details →
-                </button>
+                  <h3>{event.title}</h3>
 
-              </div>
+                  <p>{event.description}</p>
 
-            </article>
-          ))}
+                  {event.time && (
+                    <p>
+                      <strong>Time:</strong>{" "}
+                      {event.time}
+                    </p>
+                  )}
 
-        </div>
+                  {event.location && (
+                    <p>
+                      <strong>Location:</strong>{" "}
+                      {event.location}
+                    </p>
+                  )}
 
+                  <button
+                    className="text-btn"
+                    type="button"
+                  >
+                    View Details →
+                  </button>
+                </div>
+              </article>
+            ))}
+          </div>
+        )}
       </section>
 
       <Footer />
-
     </div>
   );
 }

@@ -1,38 +1,49 @@
+import { useEffect, useState } from "react";
+
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import PageHero from "../components/PageHero";
 
-const images = [
-  {
-    src: "https://images.unsplash.com/photo-1507692049790-de58290a4334?auto=format&fit=crop&w=900&q=80",
-    title: "Worship"
-  },
-  {
-    src: "https://images.unsplash.com/photo-1438032005730-c779502df39b?auto=format&fit=crop&w=900&q=80",
-    title: "Church Gathering"
-  },
-  {
-    src: "https://images.unsplash.com/photo-1504052434569-70ad5836ab65?auto=format&fit=crop&w=900&q=80",
-    title: "Prayer"
-  },
-  {
-    src: "https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=900&q=80",
-    title: "Fellowship"
-  },
-  {
-    src: "https://images.unsplash.com/photo-1519491050282-cf00c82424b4?auto=format&fit=crop&w=900&q=80",
-    title: "Community"
-  },
-  {
-    src: "https://images.unsplash.com/photo-1478147427282-58a87a120781?auto=format&fit=crop&w=900&q=80",
-    title: "Celebration"
-  }
-];
+const API_URL = "http://localhost:5001/api";
 
 function Gallery() {
+  const [images, setImages] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    fetchGallery();
+  }, []);
+
+  const fetchGallery = async () => {
+    try {
+      setLoading(true);
+      setError("");
+
+      const response = await fetch(`${API_URL}/gallery`);
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(
+          data.message || "Failed to load gallery."
+        );
+      }
+
+      setImages(data);
+    } catch (err) {
+      console.error("Failed to fetch gallery:", err);
+
+      setError(
+        "Unable to load the gallery right now. Please try again later."
+      );
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <div className="inner-page">
-
       <Navbar />
 
       <PageHero
@@ -42,35 +53,65 @@ function Gallery() {
       />
 
       <section className="gallery-section">
-
         <div className="section-heading">
           <span>OUR MEMORIES</span>
           <h2>Life At Lifegate</h2>
         </div>
 
-        <div className="gallery-grid">
+        {loading && (
+          <div className="gallery-status">
+            <p>Loading gallery...</p>
+          </div>
+        )}
 
-          {images.map((image) => (
-            <div className="gallery-item" key={image.title}>
+        {!loading && error && (
+          <div className="gallery-status gallery-error">
+            <p>{error}</p>
 
-              <img
-                src={image.src}
-                alt={image.title}
-              />
+            <button
+              className="primary-btn"
+              type="button"
+              onClick={fetchGallery}
+            >
+              Try Again →
+            </button>
+          </div>
+        )}
 
-              <div className="gallery-caption">
-                {image.title}
+        {!loading && !error && images.length === 0 && (
+          <div className="gallery-status">
+            <p>
+              No gallery images are available at the moment.
+            </p>
+          </div>
+        )}
+
+        {!loading && !error && images.length > 0 && (
+          <div className="gallery-grid">
+            {images.map((image) => (
+              <div
+                className="gallery-item"
+                key={image._id}
+              >
+                <img
+                  src={image.imageUrl}
+                  alt={
+                    image.title ||
+                    "CAC Lifegate Centre"
+                  }
+                  loading="lazy"
+                />
+
+                <div className="gallery-caption">
+                  {image.title}
+                </div>
               </div>
-
-            </div>
-          ))}
-
-        </div>
-
+            ))}
+          </div>
+        )}
       </section>
 
       <Footer />
-
     </div>
   );
 }

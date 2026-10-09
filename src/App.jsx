@@ -13,6 +13,7 @@ import Prayer from "./pages/Prayer";
 import Contact from "./pages/Contact";
 
 import MobileNav from "./components/MobileNav";
+import HymnViewer from "./pages/HymnViewer";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
         <Route path="/programs" element={<Programs />} />
         <Route path="/sermons" element={<Sermons />} />
         <Route path="/hymns" element={<Hymns />} />
+        <Route path="/hymns/:number" element={<HymnViewer />} />
         <Route path="/gallery" element={<Gallery />} />
         <Route path="/leadership" element={<Leadership />} />
         <Route path="/give" element={<Give />} />

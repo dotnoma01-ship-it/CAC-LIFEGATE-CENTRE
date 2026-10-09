@@ -2087,3 +2087,660 @@ a {
   }
 
 }
+/* =========================================
+   HYMNS MOBILE
+========================================= */
+
+@media (max-width: 800px) {
+
+  .hymns-section {
+    padding: 60px 6% 90px;
+  }
+
+  .hymns-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .hymn-card {
+    padding: 17px;
+    gap: 14px;
+    border-radius: 14px;
+  }
+
+  .hymn-number {
+    width: 48px;
+    height: 48px;
+
+    border-radius: 10px;
+
+    font-size: 0.9rem;
+  }
+
+  .hymn-info h3 {
+    font-size: 1rem;
+  }
+
+  .hymn-info span {
+    font-size: 0.62rem;
+  }
+
+  .hymn-arrow {
+    width: 34px;
+    height: 34px;
+    font-size: 0.95rem;
+  }
+
+  .hymn-search {
+    margin-bottom: 30px;
+  }
+
+  .hymn-search input {
+    padding: 15px 16px;
+  }
+
+}
+
+
+@media (max-width: 500px) {
+
+  .hymns-section {
+    padding: 50px 5% 85px;
+  }
+
+  .hymn-card {
+    padding: 15px;
+  }
+
+  .hymn-number {
+    width: 44px;
+    height: 44px;
+  }
+
+  .hymn-info h3 {
+    font-size: 0.94rem;
+  }
+
+  .hymn-arrow {
+    width: 30px;
+    height: 30px;
+  }
+
+}
+
+/* =========================================
+   HYMN VIEWER
+========================================= */
+
+.hymn-viewer {
+  min-height: 70vh;
+  padding: 60px 6% 80px;
+  background: #f8f8f5;
+}
+
+.hymn-viewer-top {
+  max-width: 900px;
+  margin: 0 auto 35px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.hymn-back {
+  color: #126e51;
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.3s ease;
+}
+
+.hymn-back:hover {
+  color: #0c523c;
+}
+
+.hymn-viewer-top > span {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: #8a6a2f;
+}
+
+.hymn-content {
+  max-width: 900px;
+  margin: 0 auto;
+  background: #ffffff;
+  padding: 55px 60px;
+  border-radius: 18px;
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.06);
+  text-align: center;
+}
+
+.hymn-category {
+  display: inline-block;
+  margin-bottom: 15px;
+  padding: 7px 15px;
+  border-radius: 30px;
+  background: #edf6f1;
+  color: #126e51;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.hymn-content h1 {
+  margin: 0;
+  color: #17372c;
+  font-size: 2.2rem;
+  line-height: 1.3;
+}
+
+.hymn-divider {
+  width: 60px;
+  height: 3px;
+  margin: 25px auto 35px;
+  background: #d7b56d;
+  border-radius: 5px;
+}
+
+.hymn-lyrics {
+  max-width: 650px;
+  margin: 0 auto;
+  color: #444;
+  font-size: 1.08rem;
+  line-height: 2;
+  text-align: center;
+}
+
+.hymn-lyrics p {
+  margin: 0;
+  min-height: 1.2em;
+}
+
+.hymn-audio {
+  margin-top: 40px;
+}
+
+.hymn-audio audio {
+  width: 100%;
+  max-width: 550px;
+}
+
+.hymn-navigation {
+  max-width: 900px;
+  margin: 30px auto 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.hymn-navigation button,
+.hymn-navigation a,
+.hymn-back-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 45px;
+  padding: 10px 20px;
+  border-radius: 8px;
+  border: 1px solid #dfe7e2;
+  background: #ffffff;
+  color: #126e51;
+  text-decoration: none;
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.hymn-navigation button:hover,
+.hymn-navigation a:hover,
+.hymn-back-button:hover {
+  background: #126e51;
+  color: #ffffff;
+  border-color: #126e51;
+}
+
+.hymn-navigation button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.hymn-navigation button:disabled:hover {
+  background: #ffffff;
+  color: #126e51;
+  border-color: #dfe7e2;
+}
+
+/* Loading / error */
+
+.hymn-viewer-message {
+  max-width: 700px;
+  margin: 80px auto;
+  padding: 60px 30px;
+  background: #ffffff;
+  border-radius: 18px;
+  text-align: center;
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.05);
+}
+
+.hymn-viewer-message h2 {
+  margin-bottom: 12px;
+  color: #17372c;
+}
+
+.hymn-viewer-message p {
+  margin-bottom: 25px;
+  color: #666;
+}
+/* =========================================
+   HYMNS MOBILE
+========================================= */
+
+@media (max-width: 800px) {
+  .hymns-section {
+    padding: 60px 6% 90px;
+  }
+
+  .hymns-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .hymn-card {
+    padding: 17px;
+    gap: 14px;
+    border-radius: 14px;
+  }
+
+  .hymn-number {
+    width: 48px;
+    height: 48px;
+    border-radius: 10px;
+    font-size: 0.9rem;
+  }
+
+  .hymn-info h3 {
+    font-size: 1rem;
+  }
+
+  .hymn-info span {
+    font-size: 0.62rem;
+  }
+
+  .hymn-arrow {
+    width: 34px;
+    height: 34px;
+    font-size: 0.95rem;
+  }
+
+  .hymn-search {
+    margin-bottom: 30px;
+  }
+
+  .hymn-search input {
+    padding: 15px 16px;
+  }
+}
+
+@media (max-width: 500px) {
+  .hymns-section {
+    padding: 50px 5% 85px;
+  }
+
+  .hymn-card {
+    padding: 15px;
+  }
+
+  .hymn-number {
+    width: 44px;
+    height: 44px;
+  }
+
+  .hymn-info h3 {
+    font-size: 0.94rem;
+  }
+
+  .hymn-arrow {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+
+/* =========================================
+   HYMN VIEWER
+========================================= */
+
+.hymn-viewer {
+  min-height: 70vh;
+  padding: 60px 6% 80px;
+  background: #f8f8f5;
+}
+
+/* Top section */
+.hymn-viewer-top {
+  max-width: 900px;
+  margin: 0 auto 35px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 20px;
+}
+
+/* Back link */
+.hymn-back {
+  color: #126e51;
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.3s ease;
+}
+
+.hymn-back:hover {
+  color: #0c523c;
+}
+
+/* Hymn number */
+.hymn-viewer-top > span {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: #8a6a2f;
+}
+
+
+/* =========================================
+   HYMN CONTENT
+========================================= */
+
+.hymn-content {
+  max-width: 900px;
+  margin: 0 auto;
+
+  background: #ffffff;
+
+  padding: 55px 60px;
+
+  border-radius: 18px;
+
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.06);
+
+  text-align: center;
+}
+
+.hymn-category {
+  display: inline-block;
+
+  margin-bottom: 15px;
+
+  padding: 7px 15px;
+
+  border-radius: 30px;
+
+  background: #edf6f1;
+  color: #126e51;
+
+  font-size: 0.75rem;
+  font-weight: 700;
+
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.hymn-content h1 {
+  margin: 0;
+
+  color: #17372c;
+
+  font-size: 2.2rem;
+  line-height: 1.3;
+}
+
+.hymn-divider {
+  width: 60px;
+  height: 3px;
+
+  margin: 25px auto 35px;
+
+  background: #d7b56d;
+
+  border-radius: 5px;
+}
+
+
+/* =========================================
+   HYMN LYRICS
+========================================= */
+
+.hymn-lyrics {
+  max-width: 650px;
+  margin: 0 auto;
+
+  color: #444;
+
+  font-size: 1.08rem;
+  line-height: 2;
+
+  text-align: center;
+}
+
+.hymn-lyrics p {
+  margin: 0;
+  min-height: 1.2em;
+}
+
+
+/* =========================================
+   AUDIO
+========================================= */
+
+.hymn-audio {
+  margin-top: 40px;
+}
+
+.hymn-audio audio {
+  width: 100%;
+  max-width: 550px;
+}
+
+
+/* =========================================
+   HYMN NAVIGATION
+========================================= */
+
+.hymn-navigation {
+  max-width: 900px;
+
+  margin: 30px auto 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 15px;
+}
+
+.hymn-navbar .logo-text strong {
+  color: #126e51;
+}
+
+.hymn-navigation button,
+.hymn-navigation a,
+.hymn-back-button {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  min-height: 45px;
+
+  padding: 10px 20px;
+
+  border-radius: 8px;
+
+  border: 1px solid #dfe7e2;
+
+  background: #ffffff;
+
+  color: #126e51;
+
+  text-decoration: none;
+
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: 0.3s ease;
+}
+
+.hymn-navigation button:hover,
+.hymn-navigation a:hover,
+.hymn-back-button:hover {
+  background: #126e51;
+  color: #ffffff;
+  border-color: #126e51;
+}
+
+.hymn-navigation button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.hymn-navigation button:disabled:hover {
+  background: #ffffff;
+  color: #126e51;
+  border-color: #dfe7e2;
+}
+
+
+/* =========================================
+   LOADING / ERROR
+========================================= */
+
+.hymn-viewer-message {
+  max-width: 700px;
+
+  margin: 80px auto;
+
+  padding: 60px 30px;
+
+  background: #ffffff;
+
+  border-radius: 18px;
+
+  text-align: center;
+
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.05);
+}
+
+.hymn-viewer-message h2 {
+  margin-bottom: 12px;
+  color: #17372c;
+}
+
+.hymn-viewer-message p {
+  margin-bottom: 25px;
+  color: #666;
+}
+
+
+/* =========================================
+   HYMN VIEWER - MOBILE
+========================================= */
+
+@media (max-width: 800px) {
+
+  .hymn-viewer {
+    padding: 35px 18px 70px;
+  }
+
+  .hymn-viewer-top {
+    margin-bottom: 25px;
+  }
+
+  .hymn-viewer-top > span {
+    font-size: 0.7rem;
+  max-width: 900px;
+  margin: 35px auto 35px;
+  }
+
+  .hymn-content {
+    padding: 35px 22px;
+    border-radius: 14px;
+  }
+
+  .hymn-content h1 {
+    font-size: 1.6rem;
+  }
+
+  .hymn-lyrics {
+    font-size: 1rem;
+    line-height: 1.9;
+  }
+
+  .hymn-navigation {
+    gap: 8px;
+  }
+
+  .hymn-navigation button,
+  .hymn-navigation a {
+    min-height: 42px;
+
+    padding: 9px 12px;
+
+    font-size: 0.78rem;
+  }
+}
+
+
+/* =========================================
+   HYMN VIEWER - SMALL MOBILE
+========================================= */
+
+@media (max-width: 500px) {
+
+  .hymn-viewer-top {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .hymn-content {
+    padding: 30px 18px;
+  }
+
+  .hymn-content h1 {
+    font-size: 1.4rem;
+  }
+
+  .hymn-lyrics {
+    font-size: 0.95rem;
+    line-height: 1.8;
+  }
+
+  .hymn-navigation {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .hymn-navigation a {
+    grid-column: 1 / -1;
+    grid-row: 1;
+  }
+
+  .hymn-navigation button:first-child {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .hymn-navigation button:last-child {
+    grid-column: 2;
+    grid-row: 2;
+  }
+}

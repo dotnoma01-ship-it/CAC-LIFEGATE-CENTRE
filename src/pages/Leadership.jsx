@@ -1,32 +1,61 @@
+import { useEffect, useState } from "react";
+
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import PageHero from "../components/PageHero";
 
-const leaders = [
-  {
-    name: "Senior Pastor",
-    role: "Lead Pastor",
-    image:
-      "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=700&q=80"
-  },
-  {
-    name: "Church Leadership",
-    role: "Ministry Leadership",
-    image:
-      "https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=700&q=80"
-  },
-  {
-    name: "Ministry Team",
-    role: "Service & Administration",
-    image:
-      "https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=700&q=80"
-  }
-];
+const API_URL = "http://localhost:5001/api";
 
 function Leadership() {
+  const [leaders, setLeaders] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    fetchLeadership();
+  }, []);
+
+  const fetchLeadership = async () => {
+    try {
+      setLoading(true);
+      setError("");
+
+      const response = await fetch(
+        `${API_URL}/leadership`
+      );
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(
+          data.message || "Failed to load leadership."
+        );
+      }
+
+      // Display only active leaders.
+      const activeLeaders = data
+        .filter((leader) => leader.isActive !== false)
+        .sort(
+          (a, b) => (a.order ?? 0) - (b.order ?? 0)
+        );
+
+      setLeaders(activeLeaders);
+    } catch (err) {
+      console.error(
+        "Failed to fetch leadership:",
+        err
+      );
+
+      setError(
+        "Unable to load our leadership team right now. Please try again later."
+      );
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <div className="inner-page">
-
       <Navbar />
 
       <PageHero
@@ -36,48 +65,114 @@ function Leadership() {
       />
 
       <section className="leadership-section">
-
         <div className="section-heading">
           <span>MEET THE TEAM</span>
+
           <h2>Our Leadership</h2>
 
           <p>
-            Our leaders are committed to serving the church and
-            helping people grow in their relationship with God.
+            Our leaders are committed to serving the
+            church and helping people grow in their
+            relationship with God.
           </p>
         </div>
 
-        <div className="leaders-grid">
+        {loading && (
+          <div className="leadership-status">
+            <p>Loading our leadership team...</p>
+          </div>
+        )}
 
-          {leaders.map((leader) => (
-            <article className="leader-card" key={leader.name}>
+        {!loading && error && (
+          <div className="leadership-status leadership-error">
+            <p>{error}</p>
 
-              <img
-                src={leader.image}
-                alt={leader.name}
-              />
+            <button
+              className="primary-btn"
+              type="button"
+              onClick={fetchLeadership}
+            >
+              Try Again →
+            </button>
+          </div>
+        )}
 
-              <div className="leader-info">
+        {!loading &&
+          !error &&
+          leaders.length === 0 && (
+            <div className="leadership-status">
+              <p>
+                Our leadership information will be
+                available here soon. Please check back
+                later.
+              </p>
+            </div>
+          )}
 
-                <span>{leader.role}</span>
+        {!loading &&
+          !error &&
+          leaders.length > 0 && (
+            <div className="leaders-grid">
+              {leaders.map((leader) => (
+                <article
+                  className="leader-card"
+                  key={leader._id}
+                >
+                  {leader.imageUrl ? (
+                    <img
+                      src={leader.imageUrl}
+                      alt={leader.name}
+                      loading="lazy"
+                    />
+                  ) : (
+                    <div className="leader-image-placeholder">
+                      <span>
+                        {leader.name
+                          .trim()
+                          .split(/\s+/)
+                          .slice(0, 2)
+                          .map((part) => part[0])
+                          .join("")
+                          .toUpperCase()}
+                      </span>
+                    </div>
+                  )}
 
-                <h3>{leader.name}</h3>
+                  <div className="leader-info">
+                    <span>{leader.position}</span>
 
-                <p>
-                  Serving the Lifegate Centre family.
-                </p>
+                    <h3>{leader.name}</h3>
 
-              </div>
+                    <p>
+                      {leader.bio ||
+                        "Serving the Lifegate Centre family."}
+                    </p>
 
-            </article>
-          ))}
+                    {leader.email && (
+                      <p>
+                        <strong>Email:</strong>{" "}
+                        <a href={`mailto:${leader.email}`}>
+                          {leader.email}
+                        </a>
+                      </p>
+                    )}
 
-        </div>
-
+                    {leader.phone && (
+                      <p>
+                        <strong>Phone:</strong>{" "}
+                        <a href={`tel:${leader.phone}`}>
+                          {leader.phone}
+                        </a>
+                      </p>
+                    )}
+                  </div>
+                </article>
+              ))}
+            </div>
+          )}
       </section>
 
       <Footer />
-
     </div>
   );
 }

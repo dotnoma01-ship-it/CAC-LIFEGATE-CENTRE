@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
-function Navbar() {
+function Navbar({ variant = "" }) {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const closeMenu = () => {
@@ -9,19 +9,25 @@ function Navbar() {
   };
 
   return (
-    <header className="navbar">
+    <header className={`navbar ${variant}`}>
       <div className="nav-container">
 
+        {/* LOGO */}
         <Link to="/" className="logo" onClick={closeMenu}>
           <div className="logo-mark">
-  <img src="/CAC LOGO.jpg" alt="CAC Lifegate Centre logo" />
-        </div>
+            <img
+              src="/CAC LOGO.jpg"
+              alt="CAC Lifegate Centre logo"
+            />
+          </div>
+
           <div className="logo-text">
             <strong>LIFEGATE</strong>
             <span>CENTRE</span>
           </div>
         </Link>
 
+        {/* NAVIGATION */}
         <nav className={`nav-links ${menuOpen ? "open" : ""}`}>
 
           <Link to="/" onClick={closeMenu}>
@@ -48,24 +54,35 @@ function Navbar() {
             Hymns
           </Link>
 
-          <Link to="/gallery" onClick={closeMenu}>
-            Gallery
-          </Link>
+<Link to="/gallery" onClick={closeMenu}>
+  Gallery
+</Link>
 
-          <Link to="/contact" onClick={closeMenu}>
-            Contact
-          </Link>
+<Link to="/leadership" onClick={closeMenu}>
+  Leadership
+</Link>
 
-          <Link to="/give" className="nav-button" onClick={closeMenu}>
+<Link to="/contact" onClick={closeMenu}>
+  Contact
+</Link>
+
+          <Link
+            to="/give"
+            className="nav-button"
+            onClick={closeMenu}
+          >
             Give
           </Link>
 
         </nav>
 
+        {/* MOBILE MENU */}
         <button
+          type="button"
           className="mobile-menu"
           onClick={() => setMenuOpen(!menuOpen)}
           aria-label="Toggle navigation"
+          aria-expanded={menuOpen}
         >
           {menuOpen ? "✕" : "☰"}
         </button>
@@ -76,3 +93,4 @@ function Navbar() {
 }
 
 export default Navbar;
+

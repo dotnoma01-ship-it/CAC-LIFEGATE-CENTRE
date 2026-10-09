@@ -1,38 +1,59 @@
+import { useEffect, useState } from "react";
+
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import PageHero from "../components/PageHero";
 
-const ministries = [
-  {
-    title: "Youth Ministry",
-    text: "Helping young people grow in faith, purpose and leadership."
-  },
-  {
-    title: "Children's Ministry",
-    text: "Creating a strong foundation of faith for the next generation."
-  },
-  {
-    title: "Men's Ministry",
-    text: "Building godly men who lead, serve and influence their families and communities."
-  },
-  {
-    title: "Women's Ministry",
-    text: "Equipping women to grow spiritually and make an impact."
-  },
-  {
-    title: "Choir & Music",
-    text: "Leading the church into worship through music and praise."
-  },
-  {
-    title: "Prayer Ministry",
-    text: "Standing together in prayer and seeking God's direction."
-  }
-];
+const API_URL = "http://localhost:5001/api";
 
 function Ministries() {
+  const [ministries, setMinistries] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    fetchMinistries();
+  }, []);
+
+  const fetchMinistries = async () => {
+    try {
+      setLoading(true);
+      setError("");
+
+      const response = await fetch(
+        `${API_URL}/ministries`
+      );
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(
+          data.message || "Failed to load ministries."
+        );
+      }
+
+      // Only display ministries marked as active.
+      const activeMinistries = data.filter(
+        (ministry) => ministry.isActive !== false
+      );
+
+      setMinistries(activeMinistries);
+    } catch (err) {
+      console.error(
+        "Failed to fetch ministries:",
+        err
+      );
+
+      setError(
+        "Unable to load ministries right now. Please try again later."
+      );
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <div className="inner-page">
-
       <Navbar />
 
       <PageHero
@@ -42,39 +63,106 @@ function Ministries() {
       />
 
       <section className="ministries-section">
-
         <div className="section-heading">
           <span>FIND YOUR PLACE</span>
+
           <h2>Grow With Us</h2>
 
           <p>
-            Discover a ministry where you can build relationships,
-            develop your gifts and serve others.
+            Discover a ministry where you can build
+            relationships, develop your gifts and serve
+            others.
           </p>
         </div>
 
-        <div className="ministries-grid">
+        {loading && (
+          <div className="ministries-status">
+            <p>Loading ministries...</p>
+          </div>
+        )}
 
-          {ministries.map((ministry, index) => (
-            <div className="ministry-card" key={ministry.title}>
+        {!loading && error && (
+          <div className="ministries-status ministries-error">
+            <p>{error}</p>
 
-              <div className="ministry-number">
-                0{index + 1}
-              </div>
+            <button
+              className="primary-btn"
+              type="button"
+              onClick={fetchMinistries}
+            >
+              Try Again →
+            </button>
+          </div>
+        )}
 
-              <h3>{ministry.title}</h3>
-
-              <p>{ministry.text}</p>
-
-              <button className="text-btn">
-                Learn More →
-              </button>
-
+        {!loading &&
+          !error &&
+          ministries.length === 0 && (
+            <div className="ministries-status">
+              <p>
+                Ministry information will be available
+                here soon. Please check back later.
+              </p>
             </div>
-          ))}
+          )}
 
-        </div>
+        {!loading &&
+          !error &&
+          ministries.length > 0 && (
+            <div className="ministries-grid">
+              {ministries.map((ministry, index) => (
+                <div
+                  className="ministry-card"
+                  key={ministry._id}
+                >
+                  {ministry.imageUrl ? (
+                    <img
+                      className="ministry-image"
+                      src={ministry.imageUrl}
+                      alt={ministry.name}
+                      loading="lazy"
+                    />
+                  ) : (
+                    <div className="ministry-number">
+                      {String(index + 1).padStart(2, "0")}
+                    </div>
+                  )}
 
+                  <h3>{ministry.name}</h3>
+
+                  <p>{ministry.description}</p>
+
+                  {ministry.leader && (
+                    <p className="ministry-leader">
+                      <strong>Leader:</strong>{" "}
+                      {ministry.leader}
+                    </p>
+                  )}
+
+                  {ministry.meetingDay && (
+                    <p>
+                      <strong>Meeting day:</strong>{" "}
+                      {ministry.meetingDay}
+                    </p>
+                  )}
+
+                  {ministry.meetingTime && (
+                    <p>
+                      <strong>Meeting time:</strong>{" "}
+                      {ministry.meetingTime}
+                    </p>
+                  )}
+
+                  {ministry.location && (
+                    <p>
+                      <strong>Location:</strong>{" "}
+                      {ministry.location}
+                    </p>
+                  )}
+                </div>
+              ))}
+            </div>
+          )}
       </section>
 
       <section className="cta-section">
@@ -88,17 +176,23 @@ function Ministries() {
           </h2>
 
           <p>
-            Find a place where you can use your gifts for God's work.
+            Find a place where you can use your gifts
+            for God's work.
           </p>
 
-          <button className="primary-btn">
+          <button
+            className="primary-btn"
+            type="button"
+            onClick={() => {
+              window.location.href = "/contact";
+            }}
+          >
             Get Connected →
           </button>
         </div>
       </section>
 
       <Footer />
-
     </div>
   );
 }
