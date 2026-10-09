@@ -1,7 +1,177 @@
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
+const API_URL = "https://cac-lifegate-backend.onrender.com";
+
 function Home() {
+  const [program, setProgram] = useState(null);
+  const [sermon, setSermon] = useState(null);
+  const [loadingProgram, setLoadingProgram] = useState(true);
+  const [loadingSermon, setLoadingSermon] = useState(true);
+
+  // Convert uploaded image URLs to HTTPS and handle relative paths.
+  const getImageUrl = (url) => {
+    if (!url || typeof url !== "string") return "";
+
+    const imageUrl = url.trim();
+
+    if (!imageUrl) return "";
+
+    if (imageUrl.startsWith("data:")) {
+      return imageUrl;
+    }
+
+    if (imageUrl.startsWith("http://")) {
+      return imageUrl.replace(/^http:\/\//i, "https://");
+    }
+
+    if (imageUrl.startsWith("https://")) {
+      return imageUrl;
+    }
+
+    if (imageUrl.startsWith("/")) {
+      return `${API_URL}${imageUrl}`;
+    }
+
+    return `${API_URL}/${imageUrl}`;
+  };
+
+  // Load the nearest upcoming program.
+  useEffect(() => {
+    let cancelled = false;
+
+    const loadPrograms = async () => {
+      try {
+        const response = await fetch(`${API_URL}/api/events`);
+
+        if (!response.ok) {
+          throw new Error("Unable to load programs");
+        }
+
+        const result = await response.json();
+
+        const events = Array.isArray(result)
+          ? result
+          : result.value || result.events || [];
+
+        // Compare calendar dates so an event happening today
+        // remains eligible even if its date has already passed by hours.
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+
+        const upcomingEvents = events
+          .filter((event) => {
+            if (!event.date) return false;
+
+            const eventDate = new Date(event.date);
+
+            if (Number.isNaN(eventDate.getTime())) {
+              return false;
+            }
+
+            eventDate.setHours(0, 0, 0, 0);
+
+            return eventDate >= today;
+          })
+          .sort(
+            (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
+          );
+
+        if (!cancelled) {
+          setProgram(upcomingEvents[0] || null);
+        }
+      } catch (error) {
+        console.error("Error loading programs:", error);
+
+        if (!cancelled) {
+          setProgram(null);
+        }
+      } finally {
+        if (!cancelled) {
+          setLoadingProgram(false);
+        }
+      }
+    };
+
+    loadPrograms();
+
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  // Load the most recently uploaded sermon.
+  useEffect(() => {
+    let cancelled = false;
+
+    const loadSermons = async () => {
+      try {
+        const response = await fetch(`${API_URL}/api/sermons`);
+
+        if (!response.ok) {
+          throw new Error("Unable to load sermons");
+        }
+
+        const result = await response.json();
+
+        const sermons = Array.isArray(result)
+          ? result
+          : result.value || result.sermons || [];
+
+        const latestSermon = [...sermons].sort((a, b) => {
+          const dateA = new Date(
+            a.createdAt || a.date || 0
+          ).getTime();
+
+          const dateB = new Date(
+            b.createdAt || b.date || 0
+          ).getTime();
+
+          return dateB - dateA;
+        })[0];
+
+        if (!cancelled) {
+          setSermon(latestSermon || null);
+        }
+      } catch (error) {
+        console.error("Error loading sermons:", error);
+
+        if (!cancelled) {
+          setSermon(null);
+        }
+      } finally {
+        if (!cancelled) {
+          setLoadingSermon(false);
+        }
+      }
+    };
+
+    loadSermons();
+
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  // Format dates for display.
+  const formatDate = (date) => {
+    if (!date) return "Date to be announced";
+
+    const parsedDate = new Date(date);
+
+    if (Number.isNaN(parsedDate.getTime())) {
+      return "Date to be announced";
+    }
+
+    return parsedDate.toLocaleDateString("en-GB", {
+      day: "numeric",
+      month: "long",
+      year: "numeric",
+    });
+  };
+
   return (
     <div className="home-page">
       <Navbar />
@@ -27,15 +197,13 @@ function Home() {
           </p>
 
           <div className="hero-buttons">
-            <button className="primary-btn">
-              Join Us
-              <span>→</span>
-            </button>
+            <Link to="/contact" className="primary-btn">
+              Join Us <span>→</span>
+            </Link>
 
-            <button className="secondary-btn">
-              <span>▶</span>
-              Watch Sermon
-            </button>
+            <Link to="/sermons" className="secondary-btn">
+              <span>▶</span> Watch Sermon
+            </Link>
           </div>
         </div>
 
@@ -49,10 +217,11 @@ function Home() {
       <section className="service-section">
         <div className="section-heading">
           <span>JOIN US</span>
-          <h2>Service Times</h2>
+          <h2>Our Weekly Services</h2>
 
           <p>
-            Come worship with us and experience God's presence.
+            Join us every week for God's Word, prayer, fellowship,
+            and spiritual growth.
           </p>
         </div>
 
@@ -63,17 +232,27 @@ function Home() {
             <div>
               <h3>Sunday Worship</h3>
               <p>Every Sunday</p>
-              <strong>8:00 AM — 11:00 AM</strong>
+              <strong>8:00 AM — 11:30 AM</strong>
             </div>
           </div>
 
           <div className="service-card">
-            <div className="service-icon">◷</div>
+            <div className="service-icon">📖</div>
 
             <div>
-              <h3>Midweek Service</h3>
-              <p>Every Wednesday</p>
-              <strong>5:00 PM — 7:00 PM</strong>
+              <h3>Bible Study</h3>
+              <p>Every Tuesday</p>
+              <strong>6:00 PM — 8:00 PM</strong>
+            </div>
+          </div>
+
+          <div className="service-card">
+            <div className="service-icon">🙏</div>
+
+            <div>
+              <h3>Prayer Connect</h3>
+              <p>Every Friday</p>
+              <strong>6:00 PM — 8:00 PM</strong>
             </div>
           </div>
         </div>
@@ -108,10 +287,9 @@ function Home() {
             here.
           </p>
 
-          <button className="text-btn">
-            Learn More
-            <span>→</span>
-          </button>
+          <Link to="/about" className="text-btn">
+            Learn More <span>→</span>
+          </Link>
         </div>
       </section>
 
@@ -123,10 +301,8 @@ function Home() {
         </div>
 
         <div className="quick-grid">
-
-          <div className="quick-card">
+          <Link to="/ministries" className="quick-card">
             <div className="quick-icon">📖</div>
-
             <h3>Our Ministries</h3>
 
             <p>
@@ -135,11 +311,10 @@ function Home() {
             </p>
 
             <span>→</span>
-          </div>
+          </Link>
 
-          <div className="quick-card">
+          <Link to="/programs" className="quick-card">
             <div className="quick-icon">📅</div>
-
             <h3>Upcoming Programs</h3>
 
             <p>
@@ -147,11 +322,10 @@ function Home() {
             </p>
 
             <span>→</span>
-          </div>
+          </Link>
 
-          <div className="quick-card">
+          <Link to="/prayer" className="quick-card">
             <div className="quick-icon">♡</div>
-
             <h3>Prayer Request</h3>
 
             <p>
@@ -159,11 +333,10 @@ function Home() {
             </p>
 
             <span>→</span>
-          </div>
+          </Link>
 
-          <div className="quick-card">
+          <Link to="/contact" className="quick-card">
             <div className="quick-icon">👥</div>
-
             <h3>Connect With Us</h3>
 
             <p>
@@ -171,53 +344,82 @@ function Home() {
             </p>
 
             <span>→</span>
-          </div>
-
+          </Link>
         </div>
       </section>
 
-      {/* UPCOMING PROGRAM */}
-      <section className="program-section">
+      {/* DYNAMIC UPCOMING PROGRAM */}
+      <section
+        className="program-section"
+        style={{
+          backgroundImage: program?.imageUrl
+            ? `linear-gradient(rgba(0, 0, 0, 0.68), rgba(0, 0, 0, 0.68)), url("${getImageUrl(program.imageUrl)}")`
+            : undefined,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+        }}
+      >
         <div className="program-content">
-
           <span>UPCOMING PROGRAM</span>
 
-          <h2>
-            Awakening
-            <br />
-            <strong>God's People</strong>
-          </h2>
+          {loadingProgram ? (
+            <h2>Loading upcoming program...</h2>
+          ) : program ? (
+            <>
+              <h2>{program.title}</h2>
 
-          <p>
-            Join us for a powerful time of worship, prayer,
-            teaching and fellowship.
-          </p>
+              <p>
+                {program.description ||
+                  "Join us for a time of worship, prayer, teaching and fellowship."}
+              </p>
 
-          <div className="program-info">
-            <div>
-              <span>📅</span>
-              <span>Coming Soon</span>
-            </div>
+              <div className="program-info">
+                <div>
+                  <span>📅</span>
+                  <span>{formatDate(program.date)}</span>
+                </div>
 
-            <div>
-              <span>📍</span>
-              <span>CAC Lifegate Centre</span>
-            </div>
-          </div>
+                {program.time && (
+                  <div>
+                    <span>◷</span>
+                    <span>{program.time}</span>
+                  </div>
+                )}
 
-          <button className="primary-btn">
-            View Programs
-            <span>→</span>
-          </button>
+                {program.location && (
+                  <div>
+                    <span>📍</span>
+                    <span>{program.location}</span>
+                  </div>
+                )}
+              </div>
 
+              <Link to="/programs" className="primary-btn">
+                View Programs <span>→</span>
+              </Link>
+            </>
+          ) : (
+            <>
+              <h2>Stay Connected</h2>
+
+              <p>
+                There are no upcoming programs announced at the moment.
+                Please check back soon.
+              </p>
+
+              <Link to="/programs" className="primary-btn">
+                View Programs <span>→</span>
+              </Link>
+            </>
+          )}
         </div>
       </section>
 
-      {/* SERMON */}
+      {/* DYNAMIC LATEST SERMON */}
       <section className="sermon-section">
         <div className="section-heading">
           <span>WATCH & LISTEN</span>
-
           <h2>Latest Sermon</h2>
 
           <p>
@@ -225,38 +427,69 @@ function Home() {
           </p>
         </div>
 
-        <div className="sermon-card">
-
-          <div className="sermon-thumbnail">
-            <div className="play-circle">
-              ▶
+        {loadingSermon ? (
+          <div className="sermon-card">
+            <div className="sermon-info">
+              <h3>Loading latest sermon...</h3>
             </div>
           </div>
+        ) : sermon ? (
+          <div className="sermon-card">
+            <div
+              className="sermon-thumbnail"
+              style={{
+                backgroundImage: sermon.thumbnailUrl
+                  ? `url("${getImageUrl(sermon.thumbnailUrl)}")`
+                  : "none",
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+                backgroundRepeat: "no-repeat",
+              }}
+            >
+              {!sermon.thumbnailUrl && (
+                <div className="play-circle">▶</div>
+              )}
+            </div>
 
-          <div className="sermon-info">
+            <div className="sermon-info">
+              <span>RECENT MESSAGE</span>
 
-            <span>RECENT MESSAGE</span>
+              <h3>{sermon.title}</h3>
 
-            <h3>Walking in God's Purpose</h3>
+              {sermon.preacher && (
+                <p>By {sermon.preacher}</p>
+              )}
 
-            <p>
-              Discover what it means to live intentionally in
-              God's plan for your life.
-            </p>
+              {sermon.description && (
+                <p>{sermon.description}</p>
+              )}
 
-            <button className="text-btn">
-              Watch Sermon
-              <span>→</span>
-            </button>
-
+              <Link to="/sermons" className="text-btn">
+                Watch Sermon <span>→</span>
+              </Link>
+            </div>
           </div>
-        </div>
+        ) : (
+          <div className="sermon-card">
+            <div className="sermon-info">
+              <h3>No sermon uploaded yet</h3>
+
+              <p>
+                Our latest messages will appear here when they are
+                uploaded.
+              </p>
+
+              <Link to="/sermons" className="text-btn">
+                Browse Sermons <span>→</span>
+              </Link>
+            </div>
+          </div>
+        )}
       </section>
 
-      {/* CTA */}
+      {/* CALL TO ACTION */}
       <section className="cta-section">
         <div>
-
           <span>YOU ARE WELCOME HERE</span>
 
           <h2>
@@ -265,15 +498,11 @@ function Home() {
             Leave transformed.
           </h2>
 
-          <p>
-            We would love to worship with you.
-          </p>
+          <p>We would love to worship with you.</p>
 
-          <button className="primary-btn">
-            Plan Your Visit
-            <span>→</span>
-          </button>
-
+          <Link to="/contact" className="primary-btn">
+            Plan Your Visit <span>→</span>
+          </Link>
         </div>
       </section>
 
