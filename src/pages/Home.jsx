@@ -5,11 +5,31 @@ import Footer from "../components/Footer";
 
 const API_URL = "https://cac-lifegate-backend.onrender.com";
 
+// ADDED: Hero slideshow images
+const heroImages = [
+  "/images/church-family.jpeg",
+  "/images/pastor.jpeg",
+];
+
 function Home() {
   const [program, setProgram] = useState(null);
   const [sermon, setSermon] = useState(null);
   const [loadingProgram, setLoadingProgram] = useState(true);
   const [loadingSermon, setLoadingSermon] = useState(true);
+
+  // ADDED: Current hero slide
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  // ADDED: Automatically change the hero image every 5 seconds
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((previousSlide) =>
+        (previousSlide + 1) % heroImages.length
+      );
+    }, 5000);
+
+    return () => clearInterval(timer);
+  }, []);
 
   // Convert uploaded image URLs to HTTPS and handle relative paths.
   const getImageUrl = (url) => {
@@ -76,7 +96,8 @@ function Home() {
             return eventDate >= today;
           })
           .sort(
-            (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
+            (a, b) =>
+              new Date(a.date).getTime() - new Date(b.date).getTime()
           );
 
         if (!cancelled) {
@@ -172,12 +193,35 @@ function Home() {
     });
   };
 
+  // ADDED: Move to the previous hero image
+  const previousSlide = () => {
+    setCurrentSlide(
+      (currentSlide - 1 + heroImages.length) % heroImages.length
+    );
+  };
+
+  // ADDED: Move to the next hero image
+  const nextSlide = () => {
+    setCurrentSlide(
+      (currentSlide + 1) % heroImages.length
+    );
+  };
+
   return (
     <div className="home-page">
       <Navbar />
 
-      {/* HERO */}
-      <section className="hero">
+      {/* HERO — slideshow added; existing text and links preserved */}
+      <section
+        className="hero"
+        style={{
+          backgroundImage: `url("${heroImages[currentSlide]}")`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+          transition: "background-image 0.6s ease-in-out",
+        }}
+      >
         <div className="hero-overlay"></div>
 
         <div className="hero-content">
@@ -207,6 +251,42 @@ function Home() {
           </div>
         </div>
 
+        {/* ADDED: Previous slide button */}
+        <button
+          type="button"
+          className="hero-arrow hero-arrow-left"
+          onClick={previousSlide}
+          aria-label="Previous slide"
+        >
+          &#10094;
+        </button>
+
+        {/* ADDED: Next slide button */}
+        <button
+          type="button"
+          className="hero-arrow hero-arrow-right"
+          onClick={nextSlide}
+          aria-label="Next slide"
+        >
+          &#10095;
+        </button>
+
+        {/* ADDED: Slide indicators */}
+        <div className="hero-dots">
+          {heroImages.map((image, index) => (
+            <button
+              key={image}
+              type="button"
+              className={`hero-dot ${
+                currentSlide === index ? "active" : ""
+              }`}
+              onClick={() => setCurrentSlide(index)}
+              aria-label={`Go to slide ${index + 1}`}
+              aria-current={currentSlide === index ? "true" : undefined}
+            />
+          ))}
+        </div>
+
         <div className="hero-scroll">
           <span>Scroll to explore</span>
           <div></div>
@@ -218,7 +298,6 @@ function Home() {
         <div className="section-heading">
           <span>JOIN US</span>
           <h2>Our Weekly Services</h2>
-
           <p>
             Join us every week for God's Word, prayer, fellowship,
             and spiritual growth.
@@ -228,7 +307,6 @@ function Home() {
         <div className="service-grid">
           <div className="service-card">
             <div className="service-icon">📅</div>
-
             <div>
               <h3>Sunday Worship</h3>
               <p>Every Sunday</p>
@@ -238,7 +316,6 @@ function Home() {
 
           <div className="service-card">
             <div className="service-icon">📖</div>
-
             <div>
               <h3>Bible Study</h3>
               <p>Every Tuesday</p>
@@ -248,7 +325,6 @@ function Home() {
 
           <div className="service-card">
             <div className="service-icon">🙏</div>
-
             <div>
               <h3>Prayer Connect</h3>
               <p>Every Friday</p>
@@ -304,45 +380,37 @@ function Home() {
           <Link to="/ministries" className="quick-card">
             <div className="quick-icon">📖</div>
             <h3>Our Ministries</h3>
-
             <p>
               Find a ministry where you can serve, grow and
               connect.
             </p>
-
             <span>→</span>
           </Link>
 
           <Link to="/programs" className="quick-card">
             <div className="quick-icon">📅</div>
             <h3>Upcoming Programs</h3>
-
             <p>
               Stay updated with our church programs and events.
             </p>
-
             <span>→</span>
           </Link>
 
           <Link to="/prayer" className="quick-card">
             <div className="quick-icon">♡</div>
             <h3>Prayer Request</h3>
-
             <p>
               Share your prayer request with our prayer team.
             </p>
-
             <span>→</span>
           </Link>
 
           <Link to="/contact" className="quick-card">
             <div className="quick-icon">👥</div>
             <h3>Connect With Us</h3>
-
             <p>
               Become part of the Lifegate Centre family.
             </p>
-
             <span>→</span>
           </Link>
         </div>
@@ -421,7 +489,6 @@ function Home() {
         <div className="section-heading">
           <span>WATCH & LISTEN</span>
           <h2>Latest Sermon</h2>
-
           <p>
             Be encouraged and strengthened through God's Word.
           </p>
@@ -453,7 +520,6 @@ function Home() {
 
             <div className="sermon-info">
               <span>RECENT MESSAGE</span>
-
               <h3>{sermon.title}</h3>
 
               {sermon.preacher && (

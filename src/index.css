@@ -2744,3 +2744,131 @@ a {
     grid-row: 2;
   }
 }
+
+/* HERO SLIDESHOW CONTROLS */
+.hero {
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+}
+
+.hero-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  width: 45px;
+  height: 45px;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.35);
+  color: #fff;
+  font-size: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+.hero-arrow:hover {
+  background: #126e51;
+  border-color: #126e51;
+}
+
+.hero-arrow-left {
+  left: 25px;
+}
+
+.hero-arrow-right {
+  right: 25px;
+}
+
+.hero-dots {
+  position: absolute;
+  left: 50%;
+  bottom: 65px;
+  transform: translateX(-50%);
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.hero-dot {
+  width: 10px;
+  height: 10px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.55);
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.hero-dot.active {
+  background: #fff;
+  transform: scale(1.3);
+}
+
+.hero-scroll {
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 600px) {
+  .hero-arrow {
+    width: 35px;
+    height: 35px;
+    font-size: 16px;
+  }
+
+  .hero-arrow-left {
+    left: 10px;
+  }
+
+  .hero-arrow-right {
+    right: 10px;
+  }
+
+  .hero-dots {
+    bottom: 55px;
+  }
+}
+
+.hero {
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    135deg,
+    rgba(18, 110, 81, 0.65),
+    rgba(12, 82, 60, 0.45)
+  );
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+}
