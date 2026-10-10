@@ -24,11 +24,6 @@ function MobileNav() {
     icon: "♡",
     label: "Prayer",
   },
-  {
-    path: "/give",
-    icon: "✦",
-    label: "Give",
-  },
 ];
   return (
     <nav className="mobile-bottom-nav">
