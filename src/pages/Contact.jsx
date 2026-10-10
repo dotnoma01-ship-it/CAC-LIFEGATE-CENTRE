@@ -1,7 +1,7 @@
+import HeroSlider from "../components/HeroSlider";
 import { useState } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import PageHero from "../components/PageHero";
 
 const API_URL = "https://cac-lifegate-backend.onrender.com/api";
 
@@ -85,11 +85,11 @@ function Contact() {
     <div className="inner-page">
       <Navbar />
 
-      <PageHero
-        label="GET IN TOUCH"
-        title="Contact Us"
-        description="We would love to hear from you and welcome you to CAC Lifegate Centre."
-      />
+      <HeroSlider
+      title="CONTACT US"
+      description="We would love to hear from you. Connect with CAC Lifegate Centre."
+      showButtons={false}
+/>
 
       <section className="contact-section">
         <div className="contact-info">
@@ -106,7 +106,7 @@ function Contact() {
           </p>
 
           <div className="contact-item">
-            <div className="contact-icon">📍</div>
+            <div className="contact-icon">ðŸ“</div>
 
             <div>
               <strong>Address</strong>
@@ -119,7 +119,7 @@ function Contact() {
           </div>
 
           <div className="contact-item">
-            <div className="contact-icon">☎</div>
+            <div className="contact-icon">&#9742;</div>
 
             <div>
               <strong>Phone</strong>
@@ -128,7 +128,7 @@ function Contact() {
           </div>
 
           <div className="contact-item">
-            <div className="contact-icon">✉</div>
+            <div className="contact-icon">&#9993;</div>
 
             <div>
               <strong>Email</strong>
@@ -226,7 +226,7 @@ function Contact() {
             className="primary-btn"
             disabled={loading}
           >
-            {loading ? "Sending..." : "Send Message →"}
+            {loading ? "Sending..." : "Send Message &#8594;"}
           </button>
         </form>
       </section>
@@ -251,3 +251,4 @@ function Contact() {
 }
 
 export default Contact;
+

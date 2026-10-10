@@ -1,8 +1,8 @@
+import HeroSlider from "../components/HeroSlider";
 import { useEffect, useState } from "react";
 
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import PageHero from "../components/PageHero";
 
 const API_URL = "https://cac-lifegate-backend.onrender.com/api";
 
@@ -56,11 +56,11 @@ function Ministries() {
     <div className="inner-page">
       <Navbar />
 
-      <PageHero
-        label="SERVE & GROW"
-        title="Our Ministries"
-        description="There is a place for everyone to connect, grow and serve."
-      />
+      <HeroSlider
+      title="OUR MINISTRIES"
+      description="Discover opportunities to serve, grow in faith, and connect with our church family."
+      showButtons={false}
+/>
 
       <section className="ministries-section">
         <div className="section-heading">
@@ -90,7 +90,7 @@ function Ministries() {
               type="button"
               onClick={fetchMinistries}
             >
-              Try Again →
+              Try Again &#8594;
             </button>
           </div>
         )}
@@ -187,7 +187,7 @@ function Ministries() {
               window.location.href = "/contact";
             }}
           >
-            Get Connected →
+            Get Connected &#8594;
           </button>
         </div>
       </section>
@@ -198,3 +198,4 @@ function Ministries() {
 }
 
 export default Ministries;
+

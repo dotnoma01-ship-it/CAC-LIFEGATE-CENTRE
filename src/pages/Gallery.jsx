@@ -1,8 +1,8 @@
+import HeroSlider from "../components/HeroSlider";
 import { useEffect, useState } from "react";
 
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import PageHero from "../components/PageHero";
 
 const API_URL = "https://cac-lifegate-backend.onrender.com/api";
 
@@ -46,11 +46,11 @@ function Gallery() {
     <div className="inner-page">
       <Navbar />
 
-      <PageHero
-        label="MOMENTS"
-        title="Gallery"
-        description="A glimpse into life, worship and fellowship at Lifegate Centre."
-      />
+      <HeroSlider
+      title="OUR GALLERY"
+      description="Explore moments of worship, fellowship, and celebration at CAC Lifegate Centre."
+      showButtons={false}
+/>
 
       <section className="gallery-section">
         <div className="section-heading">
@@ -73,7 +73,7 @@ function Gallery() {
               type="button"
               onClick={fetchGallery}
             >
-              Try Again →
+              Try Again &#8594;
             </button>
           </div>
         )}
@@ -117,3 +117,4 @@ function Gallery() {
 }
 
 export default Gallery;
+

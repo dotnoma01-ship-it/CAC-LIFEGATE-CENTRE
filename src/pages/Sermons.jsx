@@ -1,8 +1,8 @@
+import HeroSlider from "../components/HeroSlider";
 import { useEffect, useState } from "react";
 
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import PageHero from "../components/PageHero";
 
 const API_URL = "https://cac-lifegate-backend.onrender.com/api";
 
@@ -46,11 +46,11 @@ function Sermons() {
     <div className="inner-page">
       <Navbar />
 
-      <PageHero
-        label="WATCH & LISTEN"
-        title="Sermons"
-        description="Be encouraged, challenged and strengthened through God's Word."
-      />
+      <HeroSlider
+      title="SERMONS"
+      description="Listen to God's Word and grow deeper in faith through our sermons and teachings."
+      showButtons={false}
+/>
 
       <section className="sermons-section">
         <div className="section-heading">
@@ -73,7 +73,7 @@ function Sermons() {
               type="button"
               onClick={fetchSermons}
             >
-              Try Again →
+              Try Again &#8594;
             </button>
           </div>
         )}
@@ -106,7 +106,7 @@ function Sermons() {
                   }
                 >
                   <div className="play-circle">
-                    ▶
+                    &#9654;
                   </div>
                 </div>
 
@@ -135,7 +135,7 @@ function Sermons() {
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      Watch Sermon →
+                      Watch Sermon &#8594;
                     </a>
                   ) : sermon.audioUrl ? (
                     <a
@@ -144,7 +144,7 @@ function Sermons() {
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      Listen to Sermon →
+                      Listen to Sermon &#8594;
                     </a>
                   ) : (
                     <button
@@ -184,3 +184,4 @@ function Sermons() {
 }
 
 export default Sermons;
+

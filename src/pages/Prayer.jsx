@@ -1,7 +1,7 @@
+import HeroSlider from "../components/HeroSlider";
 import { useState } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import PageHero from "../components/PageHero";
 
 const API_URL = "https://cac-lifegate-backend.onrender.com/api";
 
@@ -92,11 +92,11 @@ function Prayer() {
     <div className="inner-page">
       <Navbar />
 
-      <PageHero
-        label="WE ARE HERE TO PRAY"
-        title="Prayer Request"
-        description="Whatever you are going through, you don't have to face it alone."
-      />
+      <HeroSlider
+      title="PRAYER REQUEST"
+      description="Share your prayer requests with us. We believe in the power of prayer."
+      showButtons={false}
+/>
 
       <section className="prayer-section">
         <div className="prayer-intro">
@@ -243,7 +243,7 @@ function Prayer() {
           >
             {loading
               ? "Submitting..."
-              : "Submit Prayer Request →"}
+              : "Submit Prayer Request &#8594;"}
           </button>
         </form>
       </section>
@@ -254,3 +254,4 @@ function Prayer() {
 }
 
 export default Prayer;
+

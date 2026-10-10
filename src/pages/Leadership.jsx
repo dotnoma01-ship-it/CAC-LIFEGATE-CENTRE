@@ -1,8 +1,8 @@
+import HeroSlider from "../components/HeroSlider";
 import { useEffect, useState } from "react";
 
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import PageHero from "../components/PageHero";
 
 const API_URL = "https://cac-lifegate-backend.onrender.com/api";
 
@@ -58,11 +58,11 @@ function Leadership() {
     <div className="inner-page">
       <Navbar />
 
-      <PageHero
-        label="OUR LEADERS"
-        title="Leadership"
-        description="Serving God's people with faith, humility and purpose."
-      />
+      <HeroSlider
+      title="OUR LEADERSHIP"
+      description="Meet the leaders dedicated to serving God and guiding our church family."
+      showButtons={false}
+/>
 
       <section className="leadership-section">
         <div className="section-heading">
@@ -92,7 +92,7 @@ function Leadership() {
               type="button"
               onClick={fetchLeadership}
             >
-              Try Again →
+              Try Again &#8594;
             </button>
           </div>
         )}
@@ -178,3 +178,4 @@ function Leadership() {
 }
 
 export default Leadership;
+

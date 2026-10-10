@@ -1,6 +1,6 @@
+﻿import HeroSlider from "../components/HeroSlider";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import PageHero from "../components/PageHero";
 
 function About() {
   return (
@@ -8,11 +8,11 @@ function About() {
 
       <Navbar />
 
-      <PageHero
-        label="WHO WE ARE"
-        title="About CAC Lifegate Centre"
-        description="A family of believers committed to knowing God, growing in faith and serving His purpose."
-      />
+      <HeroSlider
+      title="ABOUT US"
+      description="Discover our faith, our mission, and the family that makes CAC Lifegate Centre special."
+      showButtons={false}
+/>
 
       <section className="content-section">
 
@@ -120,3 +120,4 @@ function About() {
 }
 
 export default About;
+

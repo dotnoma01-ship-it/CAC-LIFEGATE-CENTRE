@@ -1,3 +1,4 @@
+import HeroSlider from "../components/HeroSlider";
 import { useEffect, useState, useCallback } from "react";
 import { Link } from "react-router-dom";
 
@@ -57,19 +58,11 @@ function Hymns() {
     <>
       <Navbar />
 
-      <section className="page-hero">
-        <div className="page-hero-overlay"></div>
-
-        <div className="page-hero-content">
-          <span>WORSHIP THROUGH SONG</span>
-
-          <h1>Hymns</h1>
-
-          <p>
-            Explore hymns of faith, worship, praise and devotion.
-          </p>
-        </div>
-      </section>
+      <HeroSlider
+      title="HYMN LIBRARY"
+      description="Explore hymns of praise and worship that strengthen our faith in God."
+      showButtons={false}
+/>
 
       <main className="hymns-section">
         <div className="section-heading centered">
@@ -115,7 +108,7 @@ function Hymns() {
               className="primary-btn"
               onClick={fetchHymns}
             >
-              Try Again →
+              Try Again &#8594;
             </button>
           </div>
         )}
@@ -153,7 +146,7 @@ function Hymns() {
                   </div>
 
                   <div className="hymn-arrow">
-                    →
+                    &#8594;
                   </div>
                 </Link>
               ))
@@ -177,3 +170,5 @@ function Hymns() {
 }
 
 export default Hymns;
+
+

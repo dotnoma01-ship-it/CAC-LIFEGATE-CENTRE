@@ -1,7 +1,7 @@
+import HeroSlider from "../components/HeroSlider";
 import { useState } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import PageHero from "../components/PageHero";
 
 function Give() {
   const [selectedDonation, setSelectedDonation] = useState(null);
@@ -55,11 +55,11 @@ function Give() {
     <div className="inner-page">
       <Navbar />
 
-      <PageHero
-        label="GIVE"
-        title="Give With Purpose"
-        description="Your generosity helps support the work of God and the people we serve."
-      />
+      <HeroSlider
+      title="GIVE"
+      description="Support the work of God and help us make a difference in the lives of others."
+      showButtons={false}
+/>
 
       <section className="give-section">
         <div className="give-intro">
@@ -89,7 +89,7 @@ function Give() {
                 className="primary-btn"
                 onClick={() => openDonation(option.title)}
               >
-                Give Online →
+                Give Online &#8594;
               </button>
             </div>
           ))}
@@ -125,7 +125,7 @@ function Give() {
               &times;
             </button>
 
-            <div className="donation-icon">♡</div>
+            <div className="donation-icon">&#9825;</div>
 
             <span className="donation-label">CAC LIFEGATE CENTRE</span>
 
@@ -160,13 +160,13 @@ function Give() {
                   className="copy-account-btn"
                   onClick={copyAccountNumber}
                 >
-                  {copied ? "Copied ✓" : "Copy"}
+                  {copied ? "Copied &#10003;" : "Copy"}
                 </button>
               </div>
             </div>
 
             <div className="donation-notice">
-              <span>ℹ</span>
+              <span>&#8505;</span>
               <p>
                 After making your transfer, keep your transaction receipt
                 for your records.
@@ -403,3 +403,4 @@ function Give() {
 }
 
 export default Give;
+

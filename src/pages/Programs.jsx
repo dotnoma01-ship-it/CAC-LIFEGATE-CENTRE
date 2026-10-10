@@ -1,8 +1,8 @@
+import HeroSlider from "../components/HeroSlider";
 import { useEffect, useState } from "react";
 
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import PageHero from "../components/PageHero";
 
 const API_URL = "https://cac-lifegate-backend.onrender.com/api";
 
@@ -68,11 +68,11 @@ function Programs() {
     <div className="inner-page">
       <Navbar />
 
-      <PageHero
-        label="WHAT'S HAPPENING"
-        title="Programs & Events"
-        description="Stay connected with what's happening at CAC Lifegate Centre."
-      />
+      <HeroSlider
+      title="PROGRAMS & EVENTS"
+      description="Join us for worship services, special programs, and life-changing encounters with God."
+      showButtons={false}
+/>
 
       <section className="events-section">
         <div className="section-heading">
@@ -94,7 +94,7 @@ function Programs() {
               className="text-btn"
               onClick={fetchEvents}
             >
-              Try Again →
+              Try Again &#8594;
             </button>
           </div>
         )}
@@ -151,7 +151,7 @@ function Programs() {
                     className="text-btn"
                     type="button"
                   >
-                    View Details →
+                    View Details &#8594;
                   </button>
                 </div>
               </article>
@@ -166,3 +166,4 @@ function Programs() {
 }
 
 export default Programs;
+
