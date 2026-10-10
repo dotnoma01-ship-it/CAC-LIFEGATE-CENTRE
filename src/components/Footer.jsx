@@ -3,12 +3,9 @@ import { Link } from "react-router-dom";
 function Footer() {
   return (
     <footer className="footer">
-
       <div className="footer-main">
-
         {/* BRAND */}
         <div className="footer-brand">
-
           <Link to="/" className="footer-logo-wrap">
             <div className="footer-logo">
               <img
@@ -28,13 +25,44 @@ function Footer() {
             love and purpose.
           </p>
 
+          {/* SOCIAL MEDIA LINKS */}
           <div className="footer-socials">
-            <a href="#" aria-label="Facebook">f</a>
-            <a href="#" aria-label="Instagram">◎</a>
-            <a href="#" aria-label="YouTube">▶</a>
-            <a href="#" aria-label="WhatsApp">◉</a>
-          </div>
+            <a
+              href="https://www.facebook.com/share/1BdCUaiJUf/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Visit CAC Lifegate Centre on Facebook"
+              title="Facebook"
+            >
+              f
+            </a>
 
+            <a
+              href="https://instagram.com/cac_lifegate_center?obrf=MXRsYnB6dDNuNzN5bg%3D%3D"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Visit CAC Lifegate Centre on Instagram"
+              title="Instagram"
+            >
+              ◎
+            </a>
+
+            <a
+              href="#"
+              aria-label="YouTube link not yet available"
+              title="YouTube"
+            >
+              ▶
+            </a>
+
+            <a
+              href="#"
+              aria-label="WhatsApp link not yet available"
+              title="WhatsApp"
+            >
+              ◉
+            </a>
+          </div>
         </div>
 
         {/* EXPLORE */}
@@ -61,34 +89,24 @@ function Footer() {
         <div className="footer-column footer-visit">
           <h4>Visit Us</h4>
 
-          <p>
-            CAC Lifegate Centre
-          </p>
+          <p>CAC Lifegate Centre</p>
 
-          <p>
-            Church address coming soon
-          </p>
+          <p>Church address coming soon</p>
 
           <Link to="/contact" className="footer-contact-link">
             Get Directions →
           </Link>
         </div>
-
       </div>
 
       {/* BOTTOM */}
       <div className="footer-bottom">
-
         <p>
           © 2026 CAC Lifegate Centre. All rights reserved.
         </p>
 
-        <p>
-          Built with faith & purpose.
-        </p>
-
+        <p>Built with faith &amp; purpose.</p>
       </div>
-
     </footer>
   );
 }
