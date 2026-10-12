@@ -7,6 +7,7 @@ import Programs from "./pages/Programs";
 import Sermons from "./pages/Sermons";
 import Hymns from "./pages/Hymns";
 import Gallery from "./pages/Gallery";
+import AlbumAdmin from "./pages/AlbumAdmin";
 import Leadership from "./pages/Leadership";
 import Give from "./pages/Give";
 import Prayer from "./pages/Prayer";
@@ -28,6 +29,7 @@ function App() {
         <Route path="/hymns" element={<Hymns />} />
         <Route path="/hymns/:number" element={<HymnViewer />} />
         <Route path="/gallery" element={<Gallery />} />
+<Route path="/admin/albums" element={<AlbumAdmin />} />
         <Route path="/leadership" element={<Leadership />} />
         <Route path="/give" element={<Give />} />
         <Route path="/prayer" element={<Prayer />} />
